@@ -4,7 +4,7 @@
 
 ## Overview
 
-This is a documentation of the YouGotaGift.com Corporate Rewards API 1.0
+Below given is documentation of YouGotaGift.com's Corporate Rewards API V1.0
 
 ### API Older Version Links
 [Version 0.4](https://github.com/YouGotaGift/docs/blob/master/corporate-rewards-API-v0.4.md)
@@ -14,37 +14,37 @@ This is a documentation of the YouGotaGift.com Corporate Rewards API 1.0
 [Version 0.2](https://github.com/YouGotaGift/docs/blob/master/corporate-rewards-API-0.2.md)
 
 ### Changes
-Added support for international brands which requires additional details for redemption. Eg: Code, Redemption URL, PIN etc..
+support for international brands which requires additional details for eGift Code redemption. Eg: Code, Redemption URL, PIN etc.
 
 ### Summary of changes
-* Removed "code" , instead introduced "gift_voucher" which provides all the important gift card details eg: code, redemption url, Pin etc..  
-* Removed "pdf_link" since "gift_pdf_link" has been introduced in 0.4 to provide a direct gift pdf download link.
-* Removed "excel_link" since this functionality is currently not used by any user. Might introduce later when the need arises.
-* Removed "total_amount" since the gift amount already holds the value
-* Removed "count" since it always returns 1 and more than one quantity is not allowed
+* Removed "code" , instead introduced "gift_voucher" which provides all the important gift card details eg: code, redemption url, Pin etc.
+* Removed "pdf_link" as we have introduced "gift_pdf_link" in 0.4 to provide the direct link to download gift pdf.
+* Removed "excel_link" as this functionality is currently not in demand.
+* Removed "total_amount" as the gift amount already shows the value.
+* Removed "count" as one only one eGift Code is activated in one go. Bulk activation is not supported currently.
 * "gifts_json" key returned by download endpoint has been renamed to "gift_json"
 
 ### How It Works
 
-The YouGotaGift.com Corporate Rewards API is an HTTP API, you can call it with simple HTTP GET/POST, and the result will be in JSON.
+The YouGotaGift.com Corporate Rewards API is an HTTP API, you can call it with simple HTTP GET/POST and the result will be in JSON.
 
 ### Authentication
 
-All calls to the YouGotaGift.com Corporate Rewards API require corporate authentication.
+All calls to YouGotaGift.com's Corporate Rewards API require corporate authentication.
 
 ### API Endpoints
 * All the following API endpoints are available under `https://sandbox.yougotagift.com/corporate/api/`.
 * All the API points return JSON responses.
-* All the API points are callable using HTTP methods, some will only accept `GET` requests, some will only accept `POST` requests, and some will accept both.
-* Authentication is done using HTTP Basic Authentication over TLS secured channel in HTTPS.
-* The HTTP Response Code will tell you whether your call was successful or not.
-* `HTTP 200` Means everything went okay.
-* `HTTP 201` Means Resource created.
-* `HTTP 404` Means the object you were accessing does not exist.
-* `HTTP 403` Means Forbidden, the requested is hidden for administrators only.
-* `HTTP 405` Means Request Method Not Allowed.
-* `HTTP 400` Bad Request – Inavllid or malformed request, Means that you have an error in your request, the JSON content will have `errors` field which will explain what is the issue.
-* `HTTP 50x` Internal Server Error, something went wrong from server side, we'll resolve it ASAP.
+* All the API points are called using HTTP methods, A few calls will only accept `GET` & `POST` request and some will accept both.
+* Authentication is validated using HTTP Basic Authentication over TLS secured channel in HTTPS.
+* The HTTP Response Code will return whether the call was successful or not.
+* `HTTP 200` states the request has succeeded.
+* `HTTP 201` states resource created.
+* `HTTP 404` states the resource you are trying to access do not exist.
+* `HTTP 403` states Forbidden (the requested resource is accessible only for administrators).
+* `HTTP 405` states Request Method Not Allowed.
+* `HTTP 400` Bad Request – Inavllid or malformed request, means that you have an error in your request. JSON content will have `errors` field which will explain the issues.
+* `HTTP 50x` states Internal Server Error something has gone wrong on the web site's server and YouGotaGift.com will resolve the same ASAP.
 
 #### `download`
 - **Endpoint** `https://sandbox.yougotagift.com/corporate/api/incentives-send/download/`
@@ -57,7 +57,7 @@ All calls to the YouGotaGift.com Corporate Rewards API require corporate authent
 
 | Parameter    | Description   |
 | ------------ | ------------- |
-| brand | Brand name.  **Required**.  Up-to-date brand names list can be found at https://sandbox.yougotagift.com/corporate/api/v1/brands/ to access other countries lists check the end of this file. |
+| brand | Brand name.  **Required**.  Up-to-date brand names list is accessible by calling https://sandbox.yougotagift.com/corporate/api/v1/brands/ . To access other countries lists check the end of this file. |
 | country | The brand's country.  Possible values: `AE`, `LB`, `SA`, `QA`, `BH`, `UK`, `US`. _Optional_. Defaults to `AE`. |
 | amount | Amount in the given currency.  **Required**. |
 | currency | Order currency.  Possible values: `AED`, `USD`, `QAR`, `SAR`, `EUR`, `GBP`, `BHD`.  _Optional_.  Defaults to `AED`. |
@@ -147,16 +147,15 @@ JSON document with the following format:
 
 | Parameter    | Description   |
 | ------------ | ------------- |
-| brand | Brand name **Required** (Up-to-date brand names list can be found at https://sandbox.yougotagift.com/corporate/api/v1/brands/ to access other countries lists check the end of this file) |
+| brand | Brand name **Required** (Up-to-date brand's list is accessible by calling https://sandbox.yougotagift.com/corporate/api/v1/brands/. To access other countries lists check the end of this file) |
 | country | The brand's country. Possible values: AE, LB, SA, QA, BH, UK, US. _Optional Default AE_ |
 | amount | Amount in the given currency. **Required** |
 | currency | Order currency. Possible values: AED, USD, QAR, SAR, EUR, GBP, BHD _Optional Default AED_ |
-| company | The company you're sending on behalf of. _Optional |
 | name | The gift receiver name. **Required** |
 | email | The gift receiver email. **Required** |
-| phone | The gift receiver mobile phone. Should be of format +9715XXXXXXXX or 009715XXXXXXXX or 05XXXXXXXX **Required if delivering by SMS** |
+| phone | The gift receiver mobile phone. Should be in the format +9715XXXXXXXX or 009715XXXXXXXX or 05XXXXXXXX **Required if the eGift Card is delivered via SMS** |
 | occasion  | Possible values: `birthday`, `christmas`, `teacher`, `thank you`, `congratulations`, `just because`, `wedding`, `baby`, `good luck`, `love`, `house warming`, `anniversary`, `valentine`, `mother's day`, `sorry`, `miss you`, `season's greeting`, `get well`, `encouragement`, `back to school`, `eid`, `father's day`, `graduation`, `uae national day`, `other`. _Optional_.  Defaults to `thank you`.|
-| card message | Short message to put on the cover of the card.  _Optional_.  If not set, the occasion's default message will be used, i.e. "Happy Birthday" for the "birthday" occasion.|
+| card message | Short message on the eGift Card.  _Optional_.  If not set, the occasion's default message will be used. Eg. "Happy Birthday" for the "birthday" occasion.|
 | message | Message to put inside the card.  _Optional_. |
 
 _Any extra parameters will also be saved in the `extra_fields` field._
@@ -422,7 +421,7 @@ JSON document with the following format:
 	Attribute "locations" will contain the url of brand locations, Note: for some brands this attribute will be empty.
 	
 	
-##### Brand locations Sample Request and Response
+##### Brand location Sample Request and Response
 
     GET /corporate/api/v1/brands/26/locations/ HTTP/1.1
 	Accept: application/json
