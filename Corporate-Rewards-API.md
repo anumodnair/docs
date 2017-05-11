@@ -196,9 +196,8 @@ JSON document with the following format:
     Content-Type: application/json
 
     {
-        "count": 1,
-        "total_amount": 50,
-        "message": "Your order has been requested successfully."
+        "message": "Your order has been requested successfully.",
+	"purchase_request_id": 13547
     }
 
 
