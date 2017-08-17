@@ -8,7 +8,7 @@ YouGotaGift.com’s API allows you to deliver gift by email/SMS or receive gift 
 
 #### Changes
 
-V2.0 is a major release which includes whole new set of API endpoints and all of the response parametes are different from the previous version.
+v2.0 is a major release which includes whole new set of API endpoints and all of the response parametes are different from the previous version.
 
 #### Summary of changes
 
@@ -17,11 +17,11 @@ V2.0 is a major release which includes whole new set of API endpoints and all of
 - `brands` : Brand Catalogue with structured information
 - `order` : Single API to order gift cards for all delivery types
 - `orders` : returns the order history along with the gift details
-- `topup` : Allows to topup/replenish the account, currently avaialble only on test account
+- `topup` : Allows to topup/replenish the account, currently available only on test account
 
 #### Credentials
 
-The test calls that can be made from this document are against our Test environment. You'll need your Key ID and Secret key to access the test account. Your test account details will be shared by YouGotaGift.com
+The test calls that can be made from this document are against our Test environment. You'll need your `API_SECRET` and `API_KEY` to access the test account. Your test account details will be shared by YouGotaGift.com
 
 You will need to contact YouGotaGift.com for your production environment post a successful integration in the test environment along with your server IP from which the requests are made to the API.
 
@@ -48,7 +48,7 @@ Authentication is done by signing HTTP requests with secure signatures
 ### Example usage cURL
 
         ~$ API_SIG=Base64(Hmac(API_SECRET, "Date: Mon, 17 Feb 2014 06:11:05 GMT", SHA256))
-        ~$ curl -v -H 'Date: "Mon, 17 Feb 2014 06:11:05 GMT"' -H 'Authorization: Signature keyId="API_KEY",algorithm="hmac-sha256",headers="date",signature="API_SIG"'
+        ~$ curl -v -H 'Date: "Mon, 17 Aug 2017 06:11:05 GMT"' -H 'Authorization: Signature keyId="API_KEY",algorithm="hmac-sha256",headers="date",signature="API_SIG"'
 
 ### Sample Authentication implemented in Python
 
@@ -69,7 +69,7 @@ Authentication is done by signing HTTP requests with secure signatures
         auth = HTTPSignatureAuth(key_id=API_KEY, secret=API_SECRET, headers=signature_headers)
 
         # GET: brands catalogue API
-        r = requests.get(api_url % 'brands/', auth=auth, headers=headers)
+        r = requests.get(api_url % '/brands/', auth=auth, headers=headers)
         
         print r.json()
         
@@ -82,12 +82,12 @@ Authentication is done by signing HTTP requests with secure signatures
             'currency': 'AED',
             'delivery_type': 1
         }
-        r = requests.post(api_url % 'order/', json=payload, auth=auth,headers=headers)
+        r = requests.post(api_url % '/order/', json=payload, auth=auth,headers=headers)
 
         print r.json()
 
 
-### `health`
+### `Health`
 
 - **Endpoint** `/health/`
 
@@ -121,7 +121,7 @@ Returns the account details which includes, current account balance. All the opt
 | balance | Current account balance |
 | custom_sms_message |  **Optional** Custom SMS message set for the account. If not set, the default SMS message will be sent. Tags available which can placed in the message. \<code\> : Will be replaced by the gift code, pin or url, \<bname\> replaced by brand name, \<rname\> replaced by Receiver Name, <pdf_link> replaced by gift pdf link, \<amount\> replaced by the gift amount.  |
 | pdf_type | Available options: [A4 PDF](http://gotagift.co/1sMEj), [A6 Duplex Print PDF](http://gotagift.co/nza35), [A5 Foldable PDF](http://gotagift.co/6safO), [Single Page PDF](http://gotagift.co/X6YmU) |
-| order_validity_month | If set, ordered gift cards will have this set period as the validity or the ordered gift validity( which ever is minimum ) | Anumod XXXXXX
+| order_validity_month | If set, ordered gift cards will have this set period as the validity or the ordered gift validity( which ever is lesser ) | Anumod XXXXXX
 
 ### `Topup Account`
 Available only in sandbox environment.
@@ -778,7 +778,7 @@ A few brands will have `retailers` list where the brand gift card can be redeeme
 | code | Country Code |
 | currency | Country currency details |
 | timezone | Timezone |
-| mobile_number_formats | Examples of the all available mobile number formats |
+| mobile_number_formats | Examples of all available mobile number formats |
 | mobile_number_regex | Returns the regex to validate the phone number |
 | detail_url | Unique details url of the current country |
 
