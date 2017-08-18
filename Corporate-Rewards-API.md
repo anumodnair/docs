@@ -56,7 +56,7 @@ Authentication is done by signing HTTP requests with secure signatures
 
 ### Example usage cURL
 
-        ~$ API_SIG=Base64(Hmac(API_SECRET, "Date: Mon, 17 Feb 2014 06:11:05 GMT", SHA256))
+        ~$ API_SIG=Base64(Hmac(API_SECRET, "Date: Mon, 17 Aug 2017 06:11:05 GMT", SHA256))
         ~$ curl -v -H 'Date: "Mon, 17 Aug 2017 06:11:05 GMT"' -H 'Authorization: Signature keyId="API_KEY",algorithm="hmac-sha256",headers="date",signature="API_SIG"'
 
 ### Sample Authentication implemented in Python
