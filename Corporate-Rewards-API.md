@@ -11,7 +11,7 @@
 
 [Version 0.2](https://github.com/YouGotaGift/docs/blob/master/corporate-rewards-API-0.2.md)
 
-#### Introduction
+### Introduction
 
 YouGotaGift.com’s API allows you to deliver gift by email/SMS or receive gift card details as part of your system’s workflow. This document includes a definitive list of endpoints, along with common use cases and code examples. API calls can be tested once you receive login credentials of your test account.
 
@@ -36,7 +36,7 @@ You will need to contact YouGotaGift.com for your production environment post a 
 
 #### How It Works
 
-The YouGotaGift.com API is an HTTP API, which can be called with simple HTTP GET/POST, and the result will be in JSON.
+The YouGotaGift.com API is a HTTP API, which can be called with simple HTTP GET/POST, and the result will be in JSON.
 
 #### API Endpoints
 
@@ -64,7 +64,7 @@ Authentication is done by signing HTTP requests with secure signatures
         API_KEY = '2451807E-3CCD-4E19-8'
         API_SECRET = '4bbd9678-cf43-4721-89a6-fc30aed636a0ebdc'
 
-        api_url = 'http://xxxxxxxxxx/%s'
+        api_url = 'http://xxxxxxxxxx%s'
 
         signature_headers = ['accept', 'date']
         headers = {
@@ -81,7 +81,7 @@ Authentication is done by signing HTTP requests with secure signatures
         
         # POST: Order API
         payload = {
-            'reference_id': 987667,
+            'reference_id': '987667',
             'brand_code': 'YGAGC',
             'country': 'AE',
             'amount': 200,
@@ -143,7 +143,7 @@ Returns the account details which includes, current account balance. All the opt
 | balance | Current account balance |
 | custom_sms_message |  **Optional** Custom SMS message set for the account. If not set, the default SMS message will be sent. Tags available which can placed in the message. \<code\> : Will be replaced by the gift code, pin or url, \<bname\> replaced by brand name, \<rname\> replaced by Receiver Name, <pdf_link> replaced by gift pdf link, \<amount\> replaced by the gift amount.  |
 | pdf_type | Available options: [A4 PDF](http://gotagift.co/1sMEj), [A6 Duplex Print PDF](http://gotagift.co/nza35), [A5 Foldable PDF](http://gotagift.co/6safO), [Single Page PDF](http://gotagift.co/X6YmU) |
-| order_validity_month | If set, ordered gift cards will have this set period as the validity or the ordered gift validity( which ever is lesser ) | Anumod XXXXXX
+| order_validity_month | If set, ordered gift cards will have this set period as the validity or the ordered default gift validity( which ever is lesser ) | Anumod XXXXXX
 
 ### `Topup Account`
 Available only in sandbox environment.
@@ -204,8 +204,8 @@ Available only in sandbox environment.
 | ------------ | ------------- |
 | reference_id | **Required** Reference Id (Numeric value max length 16 digits). Unique transaction reference number passed to the API. |
 | delivery_type | **Required** Type of delivery (Enumerated 0 or 1).  Defaults to `0` Deliver the gift card as email or sms( either or both ) , `1` Returns the full gift details in the response. |
-| brand_code | **Required** Brand Code (Up-to-date brand list can be found at [/brands/](https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API.md#brands-catalogue) api call explained in detail below) |
-| currency | **Required** Available order currency values: `AED`, `USD`, `QAR`, `SAR`, `EUR`, `GBP`. see currencies [/currencies/](https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API.md#currencies) for full list
+| brand_code | **Required** Brand Code (Up-to-date brand list can be found at [/brands/](https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API.md#brands-catalogue), explained in detail below) |
+| currency | **Required** Available order currency values: `AED`, `USD`, `QAR`, `SAR`, `EUR`, `GBP`. see [/currencies/](https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API.md#currencies) for full list
 | amount | **Required** Amount in the currency passed.
 | country | **Required** The country to where the gift is being purchased. Available values: `AE`, `LB`, `SA`, `QA`, `UK`, `US`.  see countries `/countries/` for full list |
 
@@ -224,9 +224,9 @@ Deliver the gift card as email or sms( either or both )
 JSON document with the following format:
 
         {
-                "reference_id": 65376,
-                "order_id": 5713,
-                "state": 1,
+            "reference_id": "1234D",
+            "order_id": 5738,
+            "state": 1
         }
 
 #### Response Parameters for delivery type `0`
@@ -243,29 +243,29 @@ Deliver the gift card as email or sms( either or both )
 Returns the full gift details in the response
 
         {
-            "reference_id": 11212153,
-            "order_id": 5735,
+            "reference_id": "12331",
+            "order_id": 5737,
             "state": 1,
             "delivery_type": 1,
             "ordered_amount": {
                 "currency": "AED",
-                "amount": "100"
+                "amount": 1000
             },
             "extra_fields": "",
             "brand_accepted_amount": {
                 "currency": "AED",
-                "amount": "100"
+                "amount": 1000
             },
-            "barcode": "https://xxxxxxxxxxx/126859204/",
-            "pdf_link": "http://xxxxxxxxxxx/sKesadhmWG",
+            "barcode": "https://xxxxxxxxxxxxx/xxxxxxx/",
+            "pdf_link": "http://xxxxxx/xxxxx",
             "gift_voucher": {
-                "code": "xxxxxxxxxxxx"
+                "code": "xxxxxxxxxx"
             },
-            "expiry_date": "2018-08-17",
+            "expiry_date": "2018-08-21",
             "redemption_instructions": "This eGift Card is redeemable for any service offered in any 1847 branch across the UAE.\r\nThis eGift Card is only valid for a one time purchase to the full value unless otherwise specified.",
             "brand_details": {
-                "logo": "https://xxxxxxxxxxx/fb/1847-FB-196x196.jpg",
-                "product_image": "https://xxxxxxxxxxx/media/images/cards/print/1847-print.png",
+                "logo": "https://xxxxxxxxxxxxx/images/cards/fb/1847-FB-196x196.jpg",
+                "product_image": "https://xxxxxxxxxxxx/images/cards/print/1847-print.png",
                 "code": "184726",
                 "name": "1847"
             },
@@ -279,7 +279,7 @@ Returns the full gift details in the response
 | ------------ | ------------- |
 | reference_id | Returns Reference Id sent in the request |
 | order_id | Order ID generated by the API for the current order |
-| state |  `0` : Order Failed , `1` : Order Successful, `2` : Order is under process |
+| state |  `0` : Order Failed , `1` : Order Successful |
 | delivery_type | Type of delivery (Enumerated 0 or 1).  `0` Deliver the gift card as email or sms( either or both ) , `1` Returns the full gift details in the response. |
 | ordered_amount | Gift ordered Amount |
 | extra_fields | Returns the extra parameter passed to the request which is sent by the client |
@@ -295,11 +295,11 @@ Returns the full gift details in the response
 #### Sample Error Response #1
 Order Failed
 
-HTTP 400 Bad Request
-Content-Type: application/json
-Vary: Accept
-Allow: POST
-
+        HTTP 400 Bad Request
+        Content-Type: application/json
+        Vary: Accept
+        Allow: POST
+        
         {
             "state": 0,    
             "errors": {
@@ -323,12 +323,12 @@ Allow: POST
 | code | Error Code ( `2204`: Invalid/missing paremeter in the request Json ) |
         
 #### Sample Error Response #2
-HTTP 409 Conflict
-Content-Type: application/json
-Vary: Accept
-Allow: POST
-
 **If the  order already exists with the passed `reference_id`, We suggest to check the status of this `reference_id` in `/orders/<reference_id>/` and makes sure you don't process the same request again until you verify the result of the earlier request for the same `reference_id`**
+
+        HTTP 409 Conflict
+        Content-Type: application/json
+        Vary: Accept
+        Allow: POST
 
          {
             "state": 0,
@@ -362,7 +362,7 @@ Allow: POST
             "previous": null,
             "orders": [
                 {
-                    "reference_id": 65377,
+                    "reference_id": "65377",
                     "order_id": 5718,
                     "state": 1,
                     "receiver_name": "Peter",
@@ -377,39 +377,38 @@ Allow: POST
                     "extra_fields": ""
                 },
                 {
-                    "reference_id": 65376,
-                    "order_id": 5708,
+                    "reference_id": "12331",
+                    "order_id": 5737,
                     "state": 1,
                     "delivery_type": 1,
-                    "brand_accepted_amount": {
-                        "currency": "AED",
-                        "amount": 50
-                    },
-                    "country": "AE",
-                    "extra_fields": "",
-                    "barcode": "https://xxxxxxxxxxxxx/barcode/generate/3233643058184/",
-                    "expiry_date": "2018-05-07",
                     "ordered_amount": {
                         "currency": "AED",
-                        "amount": 50
+                        "amount": 1000
                     },
-                    "pdf_link": "http://xxxxxxxxxxxxx/W2xx30WXR",
-                    "redemption_details": "This eGift Card can be used at any of the stores and restaurants within Majid Al Futtaim City Center Malls in the UAE, Mall of the Emirates and all hotels associated with Majid Al Futtaim Properties.",
-                    "brand_details": {
-                        "logo": "https://xxxxxxxxxxxxx/media/images/cards/fb/MAF-Card-FB.jpg",
-                        "product_image": "https://xxxxxxxxxxxxx/media/images/cards/print/MAF-Card-print.png",
-                        "code": "MECC84",
-                        "name": "Mall of the Emirates & City Centre"
+                    "extra_fields": "",
+                    "brand_accepted_amount": {
+                        "currency": "AED",
+                        "amount": 1000
                     },
+                    "barcode": "https://xxxxxxxxxxxxx/4110xxx885xx18/",
+                    "pdf_link": "http://xxxxxxxxx/ZD0FurB",
                     "gift_voucher": {
-                        "code": "xxxxxxxxxxxx"
+                        "code": "xxxxxxxxxxx"
+                    },
+                    "expiry_date": "2018-08-21",
+                    "redemption_instructions": "This eGift Card is redeemable for any service offered in any 1847 branch across the UAE.\r\nThis eGift Card is only valid for a one time purchase to the full value unless otherwise specified.",
+                    "brand_details": {
+                        "logo": "https://xxxxxxxx/images/cards/fb/1847-FB-196x196.jpg",
+                        "product_image": "https://xxxxxxxxxxxx/media/images/cards/print/1847-print.png",
+                        "code": "184726",
+                        "name": "1847"
                     },
                     "country": "AE"
                 }
         }
         
                
-### `Trace/retrieve your order`
+#### `Trace/retrieve your order`
 Trace/retrieve your order using `/orders/<reference_id>/` by passing the `reference_id`, It returns the order details and its status, if order was succesfully processed then returns the gift details based on the `delivery_type` of the order.
 
 - **Endpoint** `/orders/<reference_id>/`
@@ -417,59 +416,59 @@ Trace/retrieve your order using `/orders/<reference_id>/` by passing the `refere
 - **Accepts** `GET` only.
 - **Requires Authentication**
 
-### Response for succesfully processed gift of `delivery_type` 0
+#### Response for succesfully processed gift of `delivery_type` 0
 
-       GET /orders/65377/
+       GET /orders/1234D/
         
        {
-            "reference_id": 65377,
-            "order_id": 5718,
+            "reference_id": "1234D",
+            "order_id": 5738,
             "state": 1,
-            "receiver_name": "Peter",
-            "recevier_email": "peter@xxxxxx.com"
-            "receiver_phone": "+9715xxxxxxx",
             "delivery_type": 0,
-            "brand_code": "ITUNEUS273",
             "ordered_amount": {
-                "currency": "USD",
-                "amount": 5
+                "currency": "AED",
+                "amount": 1000
             },
-            "extra_fields": ""
-       }
+            "extra_fields": "",
+            "brand_code": "184726",
+            "receiver_name": "xxxxx",
+            "receiver_email": "xxxx@xxxxx.com",
+            "receiver_phone": "+9715xxxxxx"
+        }
        
-### Response for succesfully processed gift of `delivery_type` 1
+#### Response for succesfully processed gift of `delivery_type` 1
 
-       GET /orders/65307/
+       GET /orders/12331/
         
        {
-            "reference_id": 65307,
-            "order_id": 2502,
+            "reference_id": "12331",
+            "order_id": 5737,
             "state": 1,
             "delivery_type": 1,
             "ordered_amount": {
                 "currency": "AED",
-                "amount": 25
+                "amount": 1000
             },
             "extra_fields": "",
             "brand_accepted_amount": {
                 "currency": "AED",
-                "amount": 25
+                "amount": 1000
             },
-            "barcode": "https://xxxxxxxxxx/barcode/generate/4369203048605/",
-            "pdf_link": "http://xxxxxxxxxx.co/xdsxxZvu8n9f",
+            "barcode": "https://xxxxxxxxxxxxx/4110xxx885xx18/",
+            "pdf_link": "http://xxxxxxxxx/ZD0FurB",
             "gift_voucher": {
-                "code": "xxxxxxxxxxxx"
+                "code": "xxxxxxxxxxx"
             },
-            "expiry_date": "2018-04-20",
-            "redemption_instructions": "This eGift Card can only be used for Etisalat recharge. Not applicable on post-paid plans.\r\nDial *120*code# to recharge.\r\nThis eGift Card is only valid for a one time purchase to the full value unless otherwise specified.\r\n",
+            "expiry_date": "2018-08-21",
+            "redemption_instructions": "This eGift Card is redeemable for any service offered in any 1847 branch across the UAE.\r\nThis eGift Card is only valid for a one time purchase to the full value unless otherwise specified.",
             "brand_details": {
-                "logo": "https://xxxxxxxxxx/cards/fb/Etisalat-FB-300x300.png",
-                "product_image": "https://xxxxxxxxxx/images/cards/print/Etisalat-print-495x318.png",
-                "code": "ETSLT218",
-                "name": "Etisalat Mobile Prepaid Recharge"
+                "logo": "https://xxxxxxxx/images/cards/fb/1847-FB-196x196.jpg",
+                "product_image": "https://xxxxxxxxxxxx/media/images/cards/print/1847-print.png",
+                "code": "184726",
+                "name": "1847"
             },
             "country": "AE"
-        },
+        }
 
 ### `Brands Catalogue`
 Returns the brand details of all of the countries
@@ -497,13 +496,13 @@ Returns the brand details of all of the countries
 | product_image | Product image of the brand |
 | country | The country details of the brand where its gift cards are issued |
 | validity_in_months | Validity sepecified in months, will be set for an issued gift card of this brand based on its order date |
-| variable_amount | Denotes this brand allows custom denominations in a specified range provided in the denominations key |
+| variable_amount | Denotes this brand allows custom denominations in a specified range provided in the `denominations` key |
 | denominations | if the brand supports custom denominations then the returned value will have the minimum and maximum range of a given currency, else it returns the fixed denomination of the brand in the available currency |
 | tagline | Tagline of the brand |
 | description | Description of the brand |
 | brand_accepted_currency | Currency recognised by the brand, the store accepts the gift card only in this currency. Hence the gift card should be presented at the store in this currency |
 | image_gallery | Store images of the brand |
-| redemption_type | Denotes the end redemption process of the brand, Available options `redeem_online` : The Gift card can only be redeemed online eg: Amazon, Itunes etc.., `redeem_at_store` : The Gift card can only be redeemed at the store. , `self_redemption`: The Gift card is being redeemed by the recevier itself eg: Mobile Topup Cards, `direct_redemption`: The Gift Card gets redeemed upon ordering itself eg: Direct mobile topup  |
+| redemption_type | Denotes the end redemption process of the brand, Available options `redeem_online` : Gift card can only be redeemed online eg: Amazon, Itunes etc.., `redeem_at_store` : Gift card can only be redeemed at the physical store. , `self_redemption`: Gift card has to redeemed by the receiver by following the instructions mentioned in the gift. eg: Mobile Topup Cards, `direct_redemption`: Gift Card gets redeemed automatically. No manual action required from receiver’s end. eg: Direct mobile topup |
 | redemption_instructions | The redemption instruction of the gift card |
 | detail_url | Unique API endpoint of the brand which will return the current brand details |
 | locations | API endpoint which returns the list of all current brand locations |
@@ -662,7 +661,7 @@ Returns the brand location details of a brand
 - **Accepts** `GET` only.
 - **Requires Authentication**
 
-### Response
+#### Response
 Brand location details are available under `store_locations`
 
         {
@@ -710,7 +709,7 @@ Brand location details are available under `store_locations`
             ]
         }
 
-### Response
+#### Response
 A few brands will have `retailers` list where the brand gift card can be redeemed
 
         {
@@ -742,7 +741,7 @@ A few brands will have `retailers` list where the brand gift card can be redeeme
 - **Accepts** `GET` only.
 - **Requires Authentication**
 
-### Response
+#### Response
 
         {
             "total_count": 9,
@@ -818,7 +817,7 @@ A few brands will have `retailers` list where the brand gift card can be redeeme
 - **Accepts** `GET` only.
 - **Requires Authentication**
 
-### Response
+#### Response
     
     {
         "count": 10,
@@ -874,7 +873,7 @@ A few brands will have `retailers` list where the brand gift card can be redeeme
 - **Accepts** `GET` only.
 - **Requires Authentication**
 
-### Response
+#### Response
 
         {
             "count": 9,
