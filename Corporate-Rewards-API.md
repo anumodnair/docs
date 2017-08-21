@@ -126,8 +126,10 @@ Returns the account details which includes, current account balance. All the opt
 
         {
             "account": "HoneyTech Ventures",
-            "currency": "AED"
-            "balance": 13916836.23,
+            "balance_amount": {
+                "amount": 13883155.27,
+                "currency": "AED"
+            },
             "custom_sms_message": "Thank you for participating in the survey . Your code <code> for the eGift Card worth <amount>. For more info please visit https://yougotagift.com/gift-use/"
             "pdf_type": "A4 PDF"
             "order_validity_month": "6"
