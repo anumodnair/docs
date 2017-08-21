@@ -17,26 +17,26 @@ YouGotaGift.com’s API allows you to deliver gift by email/SMS or receive gift 
 
 #### Changes
 
-v2.0 is a major release which includes whole new set of API endpoints and all of the response parametes are different from the previous version.
+v2.0 is a major release which includes whole new set of API endpoints and all response parameters are different from the previous version.
 
 #### Summary of changes
 
 - `health` : returns the health of the API
 - `account`: returns the account information, which includes the current account balance
-- `brands` : Brand Catalogue with structured information
-- `order` : Single API to order gift cards for all delivery types
+- `brands` : brand catalogue with structured information
+- `order`  : single API to order gift cards for all delivery types
 - `orders` : returns the order history along with the gift details
-- `topup` : Allows to topup/replenish the account, currently available only on test account
+- `topup`  : allows to topup/replenish the account balance, currently available only on test account
 
 #### Credentials
 
 The test calls that can be made from this document are against our Test environment. You'll need your `API_SECRET` and `API_KEY` to access the test account. Your test account details will be shared by YouGotaGift.com
 
-You will need to contact YouGotaGift.com for your production environment post a successful integration in the test environment along with your server IP from which the requests are made to the API.
+You will need to contact YouGotaGift.com for your production environment, post a successful integration in the test environment, along with your server IP from which the requests are made to the API.
 
 #### How It Works
 
-The YouGotaGift.com API is a HTTP API, which can be called with simple HTTP GET/POST, and the result will be in JSON.
+The YouGotaGift.com API is a HTTP API, which can be called with simple HTTP GET/POST and the result will be in JSON.
 
 #### API Endpoints
 
@@ -98,7 +98,7 @@ Authentication is done by signing HTTP requests with secure signatures
 | ------------ | ------------- |
 | HTTP 200 - OK | Everything worked as expected |
 | HTTP 400 - Bad Request | An error in the request, the response will have all the required details of the error. |
-| HTTP 403 - Forbidden | The request credentials are invalid. |
+| HTTP 403 - Forbidden | Request credentials are invalid. |
 | HTTP 404 - Not Found | Resource does not exist. |
 | HTTP 409 - Conflict | Resource already exists. |
 | HTTP 500 | An error occured from our end. |
@@ -115,7 +115,7 @@ Health Check API returns a 200 OK response code, if the API is available.
 
 ### `Account`
 
-Returns the account details which includes, current account balance. All the options set during the account setup will be returned, any changes needed should be notified to the YouGotaGift team to make the changes accordingly.
+Returns the account details including current account balance. All the options set during the account setup will be returned. Any changes needed should be notified to the YouGotaGift team.
 
 - **Endpoint** `/account/`
 - **Returns** JSON Object with the result of your request
@@ -138,12 +138,12 @@ Returns the account details which includes, current account balance. All the opt
 #### Response Parameters
 | Parameter    | Description   |
 | ------------ | ------------- |
-| account | Account Name |
-| currency | Preferred Currency of the Account Holder |
+| account | Account name |
+| currency | Preferred currency of the account holder |
 | balance | Current account balance |
 | custom_sms_message |  **Optional** Custom SMS message set for the account. If not set, the default SMS message will be sent. Tags available which can placed in the message. \<code\> : Will be replaced by the gift code, pin or url, \<bname\> replaced by brand name, \<rname\> replaced by Receiver Name, <pdf_link> replaced by gift pdf link, \<amount\> replaced by the gift amount.  |
 | pdf_type | Available options: [A4 PDF](http://gotagift.co/1sMEj), [A6 Duplex Print PDF](http://gotagift.co/nza35), [A5 Foldable PDF](http://gotagift.co/6safO), [Single Page PDF](http://gotagift.co/X6YmU) |
-| order_validity_month | If set, ordered gift cards will have this set period as the validity or the ordered default gift validity( which ever is lesser ) | Anumod XXXXXX
+| order_validity_month | If set, ordered gift cards will have this set period as the validity. If not set, the ordered gift will have the default validity of the brand( validity which ever is lesser, will be mentioned on the gift ) |
 
 ### `Topup Account`
 Available only in sandbox environment.
@@ -156,7 +156,7 @@ Available only in sandbox environment.
 | Parameter    | Description   |
 | ------------ | ------------- |
 | currency | **Required** Currency |
-| amount | **Required** Amount (Numeric value). Amount should be in the passed currency . |
+| amount | **Required** Amount (Numeric value). Amount should be given in the passed currency . |
 | reference_id |  **Optional** Payment Reference ID |
 
 #### Request
@@ -286,7 +286,7 @@ Returns the full gift details in the response
 | brand_accepted_amount | Amount in currency accepted by the brand, the brand accepts the gift card only in this particular currency. |
 | barcode | Returns Barcode link for the applicable gift otherwise returns null |
 | pdf_link | Gift PDF link |
-| gift_voucher | Contains the gift code, Pin or url. It varies from brand to brand |
+| gift_voucher | Contains the gift code, Pin or url. This varies from brand to brand |
 | expiry_date | Expiry date of the gift |
 | redemption_instructions | Redemption instructions of the gift |
 | brand_details | Ordered gift brand's details |
@@ -323,7 +323,7 @@ Order Failed
 | code | Error Code ( `2204`: Invalid/missing paremeter in the request Json ) |
         
 #### Sample Error Response #2
-**If the  order already exists with the passed `reference_id`, We suggest to check the status of this `reference_id` in `/orders/<reference_id>/` and makes sure you don't process the same request again until you verify the result of the earlier request for the same `reference_id`**
+**If the  order already exists with the passed `reference_id`, we suggest to check the status of this `reference_id` in `/orders/<reference_id>/` and makes sure you don't process the same request again until you verify the result of the earlier request for the same `reference_id`**
 
         HTTP 409 Conflict
         Content-Type: application/json
@@ -494,8 +494,8 @@ Returns the brand details of all of the countries
 | name | Brand Name |
 | logo | Brand logo image |
 | product_image | Product image of the brand |
-| country | The country details of the brand where its gift cards are issued |
-| validity_in_months | Validity sepecified in months, will be set for an issued gift card of this brand based on its order date |
+| country | The country details of the brand whose gift cards are issued |
+| validity_in_months | Validity specified in months, will be set for an issued gift card of this brand based on its order date |
 | variable_amount | Denotes this brand allows custom denominations in a specified range provided in the `denominations` key |
 | denominations | if the brand supports custom denominations then the returned value will have the minimum and maximum range of a given currency, else it returns the fixed denomination of the brand in the available currency |
 | tagline | Tagline of the brand |
