@@ -2,7 +2,7 @@
 
 ![YouGotaGift.com Logo](https://cdn.yougotagift.com/static/img/yougotagift.png)
 
-### Python
+### Introduction
 
 This document includes code snippets providing examples of submitting a YouGotaGift API request and printing the JSON response, using `Python` and `Java` programming languages.
 
