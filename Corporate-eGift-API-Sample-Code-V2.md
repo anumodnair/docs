@@ -56,14 +56,13 @@ This document includes code snippets providing examples of submitting a YouGotaG
      */
     /*
     <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>19.0</version>
+    <groupId>com.google.guava</groupId>
+    <artifactId>guava</artifactId>
+    <version>19.0</version>
     </dependency>
      */
     import com.google.common.collect.ImmutableList;
     import com.google.common.collect.ImmutableMap;
-    import com.google.common.hash.Hashing;
     /*
     <dependency>
         <groupId>org.apache.httpcomponents</groupId>
@@ -71,16 +70,13 @@ This document includes code snippets providing examples of submitting a YouGotaG
         <version>4.5</version>
     </dependency>
     */
-    import org.apache.http.HttpEntity;
     import org.apache.http.util.EntityUtils;
-    import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
     import org.apache.http.client.methods.HttpGet;
     import org.apache.http.impl.client.DefaultHttpClient;
     import org.apache.http.HttpResponse;
     import org.apache.http.client.HttpClient;
     import org.apache.http.client.methods.HttpPost;
     import org.apache.http.client.methods.HttpRequestBase;
-    import org.apache.http.entity.ByteArrayEntity;
     /*
     <dependency>
         <groupId>org.tomitribe</groupId>
@@ -94,12 +90,10 @@ This document includes code snippets providing examples of submitting a YouGotaG
     import org.tomitribe.auth.signatures.Signer;
 
 
-    import java.io.ByteArrayOutputStream;
     import java.io.IOException;
     import java.time.Instant;
     import java.io.UnsupportedEncodingException;
     import java.net.URI;
-    import java.nio.charset.StandardCharsets;
     import java.security.Key;
     import java.text.SimpleDateFormat;
     import java.util.*;
@@ -310,43 +304,6 @@ This document includes code snippets providing examples of submitting a YouGotaG
                 } catch (IOException e) {
                     throw new RuntimeException("Failed to generate signature", e);
                 }
-            }
-
-            /**
-             * Calculate the Base64-encoded string representing the SHA256 of a request body
-             * @param body The request body to hash
-             */
-            private String calculateSHA256(byte[] body) {
-                byte[] hash = Hashing.sha256().hashBytes(body).asBytes();
-                return Base64.getEncoder().encodeToString(hash);
-            }
-
-            /**
-             * Helper to safely extract a request body.  Because an {@link HttpEntity} may not be repeatable,
-             * this function ensures the entity is reset after reading.  Null entities are treated as an empty string.
-             *
-             * @param request A request with a (possibly null) {@link HttpEntity}
-             */
-            private byte[] getRequestBody(HttpEntityEnclosingRequestBase request) {
-                HttpEntity entity = request.getEntity();
-                // null body is equivalent to an empty string
-                if (entity == null) {
-                    return "".getBytes(StandardCharsets.UTF_8);
-                }
-                // May need to replace the request entity after consuming
-                boolean consumed = !entity.isRepeatable();
-                ByteArrayOutputStream content = new ByteArrayOutputStream();
-                try {
-                    entity.writeTo(content);
-                } catch (IOException e) {
-                    throw new RuntimeException("Failed to copy request body", e);
-                }
-                // Replace the now-consumed body with a copy of the content stream
-                byte[] body = content.toByteArray();
-                if (consumed) {
-                    request.setEntity(new ByteArrayEntity(body));
-                }
-                return body;
             }
         }
     }
