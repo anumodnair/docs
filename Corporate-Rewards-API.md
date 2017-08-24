@@ -43,7 +43,7 @@ The YouGotaGift.com API is a HTTP API, which can be called with simple HTTP GET/
 * All the API points are callable using HTTP methods `GET` or `POST`
 * Authentication is done by signing HTTP requests with secure signatures
 
-Mode detailed explanation on `Authentication` and `Code snippets` are available in this [link](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md)
+**Mode detailed explanation on `Authentication` and `Code snippets` are available in this [link](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md)**
 
 ### `HTTP Responses`
 
