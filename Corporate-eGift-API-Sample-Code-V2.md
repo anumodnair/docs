@@ -1,12 +1,75 @@
-# YouGotaGift.com eGift API Sample Code _v2.0_
+# YouGotaGift.com eGift API _v2.0_ ( Authentication and Sample code )
 
 ![YouGotaGift.com Logo](https://cdn.yougotagift.com/static/img/yougotagift.png)
 
 ### Introduction
 
-This document includes code snippets providing examples of submitting a YouGotaGift API request and printing the JSON response.
+This document expalins Authentication and includes code snippets providing examples of submitting a YouGotaGift API request and printing the JSON response.
 
-### Code Snippets
+### `Authentication`
+Authentication is done by signing HTTP requests with secure signatures
+
+1. Must obtain `API_SECRET` and `API_KEY` from YouGotaGift.com
+2. Each request requires `API_KEY` and `Signature` parameter to be submitted.
+3. The `Signature` parameter is built from `API_SECRET` + `timestamp` which is hmac-sha256 encrypted and later Hex encoded.
+
+*Note: Each request requires new `Signature` built with the current timestamp to be submitted.*
+
+##### Specification You Need to Be Familiar With:
+
+To learn how to perform steps 3 in the process above, refer to draft-cavage-http-signatures (https://tools.ietf.org/html/draft-cavage-http-signatures-03). It's a draft specification that forms the basis for how YouGotaGift handles request signatures. It describes generally how to form the signing string, how to create the signature, and how to add the signature and required information to the request. The remaining sections in this topic assume you're familiar with it.
+
+##### Important items to note about the API implementation:
+
+##### `Authorization Header`
+
+The YouGotaGift Services signature uses the `Signature` Authentication scheme (with an Authorization header), and not the Signature HTTP header.
+
+##### `Required Headers`
+
+This section describes the headers that must be included in the signing string.
+*Note: If a required header is missing, you will receive a `401 "Unauthorized"` response.*
+
+##### `GET requests Headers`
+For GET requests (when there's no content in the request body), the signing string must include at least these headers:
+
+| Header | Description |
+| ------------ | ------------- |
+|(request-target) | (as described in draft-cavage-http-signatures-03) |
+|host| |
+|date| UTC date and time in standard format |
+
+##### `POST requests Headers`
+For POST requests (when there's content in the request body), the signing string must include at least these headers:
+
+| Header | Description |
+| ------------ | ------------- |
+|(request-target) | (as described in draft-cavage-http-signatures-03) |
+| host | |
+| date | UTC date and time in standard format |
+| content-type | The MIME type of the body of the request |
+| content-length | The length of the request body |
+
+##### `URL Encoding of Path and Query String`
+
+When forming the signing string, you must URL encode all parameters in the path and query string (but not the headers) according to RFC 3986.
+
+##### `Signing Algorithm`
+
+The signing algorithm must be hmac-sha256, and you must set algorithm="hmac-sha256" in the Authorization header (notice the quotation marks).
+
+##### `Example Header`
+
+Here's an example of the general syntax of the Authorization header (for a request with content in the body):
+
+        'HTTP_AUTHORIZATION': 'Signature headers="accept date",keyId="NGJHIVCEHBZCODYQC0EF",algorithm="hmac-sha256",signature="UBuv7hHKm85N18894stnYgF82PGQ9/Rf36CZQNJDNYk="',
+
+##### `Example usage cURL to create Authorization header`
+
+        ~$ API_SIG=Base64(Hmac(API_SECRET, "Date: Mon, 17 Aug 2017 06:11:05 GMT", SHA256))
+        ~$ curl -v -H 'Date: "Mon, 17 Aug 2017 06:11:05 GMT"' -H 'Authorization: Signature keyId="API_KEY",algorithm="hmac-sha256",headers="date",signature="API_SIG"'
+
+### `Code Snippets`
 
 - [`Python`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#python)
 - [`Java`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#java)
