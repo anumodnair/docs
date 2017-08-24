@@ -2,6 +2,41 @@
 
 ![YouGotaGift.com Logo](https://cdn.yougotagift.com/static/img/yougotagift.png)
 
+### Python
+
+    import datetime
+    import requests 
+    from httpsig.requests_auth import HTTPSignatureAuth
+
+    API_KEY = '2451807E-3CCD-4E19-8'
+    API_SECRET = '4bbd9678-cf43-4721-89a6-fc30aed636a0ebdc'
+
+    api_url = 'http://xxxxxxxxxx%s'
+
+    signature_headers = ['accept', 'date']
+    headers = {
+        'Accept': 'application/json',
+        'X-Api-Key': API_KEY,
+        'date': str(datetime.datetime.now()),
+    }
+    auth = HTTPSignatureAuth(key_id=API_KEY, secret=API_SECRET, headers=signature_headers)
+
+    # GET: brand catalogue API
+    r = requests.get(api_url % '/brands/', auth=auth, headers=headers)
+    print r.json()
+    
+    # POST: Order API
+    payload = {
+        'reference_id': '987667',
+        'brand_code': 'YGAGC',
+        'country': 'AE',
+        'amount': 200,
+        'currency': 'AED',
+        'delivery_type': 1
+    }
+    r = requests.post(api_url % '/order/', json=payload, auth=auth, headers=headers)
+    print r.json()
+    
 ### Java
 
     package Signing;
@@ -307,37 +342,3 @@
         }
     }
     
-### Python
-
-    import datetime
-    import requests 
-    from httpsig.requests_auth import HTTPSignatureAuth
-
-    API_KEY = '2451807E-3CCD-4E19-8'
-    API_SECRET = '4bbd9678-cf43-4721-89a6-fc30aed636a0ebdc'
-
-    api_url = 'http://xxxxxxxxxx%s'
-
-    signature_headers = ['accept', 'date']
-    headers = {
-        'Accept': 'application/json',
-        'X-Api-Key': API_KEY,
-        'date': str(datetime.datetime.now()),
-    }
-    auth = HTTPSignatureAuth(key_id=API_KEY, secret=API_SECRET, headers=signature_headers)
-
-    # GET: brand catalogue API
-    r = requests.get(api_url % '/brands/', auth=auth, headers=headers)
-    print r.json()
-    
-    # POST: Order API
-    payload = {
-        'reference_id': '987667',
-        'brand_code': 'YGAGC',
-        'country': 'AE',
-        'amount': 200,
-        'currency': 'AED',
-        'delivery_type': 1
-    }
-    r = requests.post(api_url % '/order/', json=payload, auth=auth, headers=headers)
-    print r.json()
