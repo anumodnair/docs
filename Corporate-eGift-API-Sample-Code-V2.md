@@ -17,7 +17,7 @@ Authentication is done by signing HTTP requests with secure signatures
 
 ##### Specification You Need to Be Familiar With:
 
-To learn how to perform steps 3 in the process above, refer to draft-cavage-http-signatures (https://tools.ietf.org/html/draft-cavage-http-signatures-03). 
+To learn how to perform step 3 in the process above, refer to [draft-cavage-http-signatures](https://tools.ietf.org/html/draft-cavage-http-signatures-03). 
 
 It's a draft specification that forms the basis for how YouGotaGift handles request signatures. It describes generally how to form the signing string, how to create the signature, and how to add the signature and required information to the request. The remaining sections in this topic assume you're familiar with it.
 
@@ -25,11 +25,12 @@ It's a draft specification that forms the basis for how YouGotaGift handles requ
 
 ##### `Authorization Header`
 
-The YouGotaGift Services signature uses the `Signature` Authentication scheme (with an Authorization header), and not the Signature HTTP header.
+The YouGotaGift API signature uses the `Signature` Authentication scheme (with an Authorization header), and not the Signature HTTP header.
 
 ##### `Required Headers`
 
 This section describes the headers that must be included in the signing string.
+
 *Note: If a required header is missing, you will receive a `401 "Unauthorized"` response.*
 
 ##### `GET requests Headers`
@@ -37,8 +38,8 @@ For GET requests (when there's no content in the request body), the signing stri
 
 | Header | Description |
 | ------------ | ------------- |
-|(request-target) | (as described in draft-cavage-http-signatures-03) |
-|host| |
+|(request-target) | [As described in draft-cavage-http-signatures-03](https://tools.ietf.org/html/draft-cavage-http-signatures-03) |
+|host| Host |
 |date| UTC date and time in standard format |
 
 ##### `POST requests Headers`
@@ -46,8 +47,8 @@ For POST requests (when there's content in the request body), the signing string
 
 | Header | Description |
 | ------------ | ------------- |
-|(request-target) | (as described in draft-cavage-http-signatures-03) |
-| host | |
+|(request-target) | [As described in draft-cavage-http-signatures-03](https://tools.ietf.org/html/draft-cavage-http-signatures-03) |
+| host | Host |
 | date | UTC date and time in standard format |
 | content-type | The MIME type of the body of the request |
 | content-length | The length of the request body |
