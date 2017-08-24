@@ -43,53 +43,7 @@ The YouGotaGift.com API is a HTTP API, which can be called with simple HTTP GET/
 * All the API points are callable using HTTP methods `GET` or `POST`
 * Authentication is done by signing HTTP requests with secure signatures
 
-### `Authentication`
-Authentication is done by signing HTTP requests with secure signatures
-
-* Must obtain `API_SECRET` and `API_KEY` from YouGotaGift.com
-* Each request requires `API_KEY` and  `Signature` parameter to be submitted.
-* The `Signature` parameter is built from `API_SECRET` + `timestamp` which is SHA-256 encrypted and later Hex encoded.
-
-#### Example usage cURL
-
-        ~$ API_SIG=Base64(Hmac(API_SECRET, "Date: Mon, 17 Aug 2017 06:11:05 GMT", SHA256))
-        ~$ curl -v -H 'Date: "Mon, 17 Aug 2017 06:11:05 GMT"' -H 'Authorization: Signature keyId="API_KEY",algorithm="hmac-sha256",headers="date",signature="API_SIG"'
-
-#### Sample Authentication implemented in Python
-
-        import datetime
-        import requests 
-        from httpsig.requests_auth import HTTPSignatureAuth
-
-        API_KEY = '2451807E-3CCD-4E19-8'
-        API_SECRET = '4bbd9678-cf43-4721-89a6-fc30aed636a0ebdc'
-
-        api_url = 'http://xxxxxxxxxx%s'
-
-        signature_headers = ['accept', 'date']
-        headers = {
-            'Accept': 'application/json',
-            'X-Api-Key': API_KEY,
-            'date': str(datetime.datetime.now()),
-        }
-        auth = HTTPSignatureAuth(key_id=API_KEY, secret=API_SECRET, headers=signature_headers)
-
-        # GET: brand catalogue API
-        r = requests.get(api_url % '/brands/', auth=auth, headers=headers)
-        print r.json()
-        
-        # POST: Order API
-        payload = {
-            'reference_id': '987667',
-            'brand_code': 'YGAGC',
-            'country': 'AE',
-            'amount': 200,
-            'currency': 'AED',
-            'delivery_type': 1
-        }
-        r = requests.post(api_url % '/order/', json=payload, auth=auth, headers=headers)
-        print r.json()
-        
+Mode detialed explanation on `Authentication` and `Code snippet` is available in this (https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md)[link]
 
 ### `HTTP Responses`
 
@@ -97,6 +51,7 @@ Authentication is done by signing HTTP requests with secure signatures
 | ------------ | ------------- |
 | HTTP 200 - OK | Everything worked as expected |
 | HTTP 400 - Bad Request | An error in the request, the response will have all the required details of the error. |
+| HTTP 401 - Unauthorized | Authentication headers are invalid. |
 | HTTP 403 - Forbidden | Request credentials are invalid. |
 | HTTP 404 - Not Found | Resource does not exist. |
 | HTTP 409 - Conflict | Resource already exists. |
