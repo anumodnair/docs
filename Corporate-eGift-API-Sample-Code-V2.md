@@ -1,10 +1,15 @@
-# YouGotaGift.com Corporate Rewards API Sample Code _v2.0_
+# YouGotaGift.com eGift API Sample Code _v2.0_
 
 ![YouGotaGift.com Logo](https://cdn.yougotagift.com/static/img/yougotagift.png)
 
 ### Introduction
 
-This document includes code snippets providing examples of submitting a YouGotaGift API request and printing the JSON response, using `Python` and `Java` programming languages.
+This document includes code snippets providing examples of submitting a YouGotaGift API request and printing the JSON response.
+
+### Code Snippets
+
+- [`Python`](https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API-Sample-Code-V2.md#python)
+- [`Java`](https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API-Sample-Code-V2.md#java)
 
 ### Python
 
