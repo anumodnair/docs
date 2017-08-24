@@ -1,4 +1,4 @@
-# YouGotaGift.com eGift API _v2.0_ ( Authentication and Sample code )
+## YouGotaGift.com eGift API _v2.0_ ( Authentication and Sample code )
 
 ![YouGotaGift.com Logo](https://cdn.yougotagift.com/static/img/yougotagift.png)
 
@@ -17,7 +17,9 @@ Authentication is done by signing HTTP requests with secure signatures
 
 ##### Specification You Need to Be Familiar With:
 
-To learn how to perform steps 3 in the process above, refer to draft-cavage-http-signatures (https://tools.ietf.org/html/draft-cavage-http-signatures-03). It's a draft specification that forms the basis for how YouGotaGift handles request signatures. It describes generally how to form the signing string, how to create the signature, and how to add the signature and required information to the request. The remaining sections in this topic assume you're familiar with it.
+To learn how to perform steps 3 in the process above, refer to draft-cavage-http-signatures (https://tools.ietf.org/html/draft-cavage-http-signatures-03). 
+
+It's a draft specification that forms the basis for how YouGotaGift handles request signatures. It describes generally how to form the signing string, how to create the signature, and how to add the signature and required information to the request. The remaining sections in this topic assume you're familiar with it.
 
 ##### Important items to note about the API implementation:
 
