@@ -9,7 +9,7 @@ This document includes code snippets providing examples of submitting a YouGotaG
 ### Code Snippets
 
 - [`Python`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#python)
-- [`Java`](https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API-Sample-Code-V2.md#Java)
+- [`Java`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#java)
 
 ### Python
 
