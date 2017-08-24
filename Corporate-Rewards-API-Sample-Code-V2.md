@@ -4,6 +4,10 @@
 
 ### Python
 
+This document includes code snippets providing examples of submitting a YouGotaGift API request and printing the JSON response, using `Python` and `Java` programming languages.
+
+### Python
+
     import datetime
     import requests 
     from httpsig.requests_auth import HTTPSignatureAuth
