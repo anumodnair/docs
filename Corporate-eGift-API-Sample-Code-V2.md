@@ -75,7 +75,9 @@ Here's an example of the general syntax of the Authorization header (for a reque
 ### `Code Snippets`
 
 - [`Python`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#python)
+- [`PHP`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#php)
 - [`Java`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#java)
+
 
 ### Python
 
@@ -83,8 +85,8 @@ Here's an example of the general syntax of the Authorization header (for a reque
     import requests 
     from httpsig.requests_auth import HTTPSignatureAuth
 
-    API_KEY = '2451807E-3CCD-4E19-8'
-    API_SECRET = '4bbd9678-cf43-4721-89a6-fc30aed636a0ebdc'
+    API_KEY = 'NGJHIVCEHBZCODYQC0EF'
+    API_SECRET = 'MK6Go9VxfyVykdHTaW6UyHpJCW7c1mP9R1qCwqCH'
 
     api_url = 'http://xxxxxxxxxx%s'
 
@@ -112,6 +114,56 @@ Here's an example of the general syntax of the Authorization header (for a reque
     r = requests.post(api_url % '/order/', json=payload, auth=auth, headers=headers)
     print r.json()
     
+### PHP
+
+Reference : https://github.com/dgwynne/php-http-signature
+
+        <?php
+        $apiKey = 'NGJHIVCEHBZCODYQC0EF';
+        $apiSecret = 'MK6Go9VxfyVykdHTaW6UyHpJCW7c1mP9R1qCwqCH';
+        $fullURLString = 'http://xxxxxxxxxxxx/order/';
+        $options = array(
+            'key' => $apiSecret,
+            'keyId' => $apiKey,
+            'algorithm' => 'hmac-sha256');
+        //Sign Header elements
+        $options['headers'] = array('date');
+        // Date header UTC Current Date and time 
+        $headers['date'] = date(DATE_RFC1123);
+        $sign = array();
+        // Date header UTC Current Date and time 
+        foreach ($options['headers'] as $header) {
+            $sign[] = sprintf("%s: %s", $header, $headers[$header]);
+        }
+        $data = join("\n", $sign);
+        // Create signature 
+        $signature = hash_hmac('sha256', $data, $options['key'], true);
+        // Create Authorization Header 
+        $headers['authorization'] = sprintf('Signature keyId="%s",algorithm="%s",headers="%s",signature="%s"', $options['keyId'], $options['algorithm'], implode(' ', $options['headers']), base64_encode($signature));
+
+        $http_headers = array();
+        foreach ($headers as $k => $v) {
+            $http_headers[] = "$k: $v";
+        }
+        $http_headers[] = "accept: application/json";
+        $http_headers[] = "X-Api-Key: $apiKey";
+
+        $post = [
+            'reference_id' => 10078,
+            'brand_code' => '1847',
+            'country' => 'AE',
+            'amount' => 200,
+            'currency' => 'AED',
+            'delivery_type' => 1
+        ];
+
+        $ch = curl_init($fullURLString);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $http_headers);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+        curl_exec($ch);
+        curl_close($ch);
+        ?>
+        
 ### Java
 
     package Signing;
