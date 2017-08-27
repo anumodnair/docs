@@ -6,6 +6,11 @@
 
 This document expalins Authentication and includes code snippets providing examples of submitting a YouGotaGift API request and printing the JSON response.
 
+### Contents
+
+- #### [Authentication](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#authentication)
+- #### [Code Snippets](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#code-snippets)
+
 ### `Authentication`
 Authentication is done by signing HTTP requests with secure signatures
 
