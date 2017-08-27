@@ -8,8 +8,8 @@ This document expalins Authentication and includes code snippets providing examp
 
 ### Contents
 
-- #### [Authentication](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#authentication)
-- #### [Code Snippets](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#code-snippets)
+- #### [Authentication](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#authentication-1)
+- #### [Code Snippets](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#code-snippets-1)
 
 ### `Authentication`
 Authentication is done by signing HTTP requests with secure signatures
