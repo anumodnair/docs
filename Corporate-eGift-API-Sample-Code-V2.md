@@ -74,50 +74,11 @@ Here's an example of the general syntax of the Authorization header (for a reque
 
 ### `Code Snippets`
 
-- [`Python`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#python)
 - [`PHP`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#php)
+- [`Python`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#python)
 - [`Java`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#java)
 
 
-### Python
-
-    import datetime
-    import requests 
-    from httpsig.requests_auth import HTTPSignatureAuth
-
-    API_KEY = 'NGJHIVCEHBZCODYQC0EF'
-    API_SECRET = 'MK6Go9VxfyVykdHTaW6UyHpJCW7c1mP9R1qCwqCH'
-
-    uri = "http://xxxxxxxxxxxxxxxxxxxxxxxxxxx/brands/{" \
-              "brand_code}/"
-    uri = uri.format(
-            brand_code=1847)
-
-    signature_headers = ['accept', 'date']
-    headers = {
-        'Accept': 'application/json',
-        'X-Api-Key': API_KEY,
-        'date': str(datetime.datetime.now()),
-    }
-    auth = HTTPSignatureAuth(key_id=API_KEY, secret=API_SECRET, headers=signature_headers)
-
-    # GET: brand catalogue API
-    r = requests.get(uri, auth=auth, headers=headers)
-    print r.json()
-    
-    # POST: Order API
-    payload = {
-        'reference_id': '987667',
-        'brand_code': 'YGAGC',
-        'country': 'AE',
-        'amount': 200,
-        'currency': 'AED',
-        'delivery_type': 1
-    }
-    uri = "http://xxxxxxxxxxxxxxxxxxxxxxxxxxx/order/"
-    r = requests.post(uri, json=payload, auth=auth, headers=headers)
-    print r.json()
-    
 ### PHP
 
 Reference : https://github.com/dgwynne/php-http-signature
@@ -169,7 +130,47 @@ Reference : https://github.com/dgwynne/php-http-signature
         curl_exec($ch);
         curl_close($ch);
         ?>
-        
+
+### Python
+
+    import datetime
+    import requests 
+    from httpsig.requests_auth import HTTPSignatureAuth
+
+    API_KEY = 'NGJHIVCEHBZCODYQC0EF'
+    API_SECRET = 'MK6Go9VxfyVykdHTaW6UyHpJCW7c1mP9R1qCwqCH'
+
+    uri = "http://xxxxxxxxxxxxxxxxxxxxxxxxxxx/brands/{" \
+              "brand_code}/"
+    uri = uri.format(
+            brand_code=1847)
+
+    signature_headers = ['accept', 'date']
+    headers = {
+        'Accept': 'application/json',
+        'X-Api-Key': API_KEY,
+        'date': str(datetime.datetime.now()),
+    }
+    auth = HTTPSignatureAuth(key_id=API_KEY, secret=API_SECRET, headers=signature_headers)
+
+    # GET: brand catalogue API
+    r = requests.get(uri, auth=auth, headers=headers)
+    print r.json()
+    
+    # POST: Order API
+    payload = {
+        'reference_id': '987667',
+        'brand_code': 'YGAGC',
+        'country': 'AE',
+        'amount': 200,
+        'currency': 'AED',
+        'delivery_type': 1
+    }
+    uri = "http://xxxxxxxxxxxxxxxxxxxxxxxxxxx/order/"
+    r = requests.post(uri, json=payload, auth=auth, headers=headers)
+    print r.json()
+    
+
 ### Java
 
     package Signing;
