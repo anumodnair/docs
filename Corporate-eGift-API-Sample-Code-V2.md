@@ -81,12 +81,11 @@ Here's an example of the general syntax of the Authorization header (for a reque
 
 ### PHP
 
-Reference : https://github.com/dgwynne/php-http-signature
-
         <?php
         $apiKey = 'NGJHIVCEHBZCODYQC0EF';
         $apiSecret = 'MK6Go9VxfyVykdHTaW6UyHpJCW7c1mP9R1qCwqCH';
         $fullURLString = 'http://xxxxxxxxxxxx/order/';
+        
         $options = array(
             'key' => $apiSecret,
             'keyId' => $apiKey,
@@ -95,15 +94,16 @@ Reference : https://github.com/dgwynne/php-http-signature
         $options['headers'] = array('date');
         // Date header UTC Current Date and time 
         $headers['date'] = date(DATE_RFC1123);
+        
         $sign = array();
         // Date header UTC Current Date and time 
         foreach ($options['headers'] as $header) {
             $sign[] = sprintf("%s: %s", $header, $headers[$header]);
         }
         $data = join("\n", $sign);
-        // Create signature 
+        // Create signature and Authorization Header
+        // Ref : https://github.com/dgwynne/php-http-signature
         $signature = hash_hmac('sha256', $data, $options['key'], true);
-        // Create Authorization Header 
         $headers['authorization'] = sprintf('Signature keyId="%s",algorithm="%s",headers="%s",signature="%s"', 
         $options['keyId'], $options['algorithm'], implode(' ', $options['headers']), 
         base64_encode($signature));
@@ -140,8 +140,7 @@ Reference : https://github.com/dgwynne/php-http-signature
     API_KEY = 'NGJHIVCEHBZCODYQC0EF'
     API_SECRET = 'MK6Go9VxfyVykdHTaW6UyHpJCW7c1mP9R1qCwqCH'
 
-    uri = "http://xxxxxxxxxxxxxxxxxxxxxxxxxxx/brands/{" \
-              "brand_code}/"
+    uri = "http://xxxxxxxxxxx/brands/{brand_code}/"
     uri = uri.format(
             brand_code=1847)
 
