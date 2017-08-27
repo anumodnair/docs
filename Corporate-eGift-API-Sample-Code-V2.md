@@ -78,6 +78,7 @@ Here's an example of the general syntax of the Authorization header (for a reque
         ~$ curl -v -H 'Date: "Mon, 17 Aug 2017 06:11:05 GMT"' -H 'Authorization: Signature keyId="API_KEY",algorithm="hmac-sha256",headers="date",signature="API_SIG"'
 
 ### `Code Snippets`
+The following code snippets provides an example of submitting a YouGotaGift API request and printing the JSON response
 
 - [`PHP`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#php)
 - [`Python`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#python)
