@@ -88,7 +88,10 @@ Here's an example of the general syntax of the Authorization header (for a reque
     API_KEY = 'NGJHIVCEHBZCODYQC0EF'
     API_SECRET = 'MK6Go9VxfyVykdHTaW6UyHpJCW7c1mP9R1qCwqCH'
 
-    api_url = 'http://xxxxxxxxxx%s'
+    uri = "http://xxxxxxxxxxxxxxxxxxxxxxxxxxx/brands/{" \
+              "brand_code}/"
+    uri = uri.format(
+            brand_code=1847)
 
     signature_headers = ['accept', 'date']
     headers = {
@@ -99,7 +102,7 @@ Here's an example of the general syntax of the Authorization header (for a reque
     auth = HTTPSignatureAuth(key_id=API_KEY, secret=API_SECRET, headers=signature_headers)
 
     # GET: brand catalogue API
-    r = requests.get(api_url % '/brands/', auth=auth, headers=headers)
+    r = requests.get(uri, auth=auth, headers=headers)
     print r.json()
     
     # POST: Order API
@@ -111,7 +114,8 @@ Here's an example of the general syntax of the Authorization header (for a reque
         'currency': 'AED',
         'delivery_type': 1
     }
-    r = requests.post(api_url % '/order/', json=payload, auth=auth, headers=headers)
+    uri = "http://xxxxxxxxxxxxxxxxxxxxxxxxxxx/order/"
+    r = requests.post(uri, json=payload, auth=auth, headers=headers)
     print r.json()
     
 ### PHP
