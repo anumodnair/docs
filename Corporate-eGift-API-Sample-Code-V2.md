@@ -165,7 +165,7 @@ Here's an example of the general syntax of the Authorization header (for a reque
         'currency': 'AED',
         'delivery_type': 1
     }
-    uri = "http://xxxxxxxxxxxxxxxxxxxxxxxxxxx/order/"
+    uri = "http://xxxxxxxxxxx/order/"
     r = requests.post(uri, json=payload, auth=auth, headers=headers)
     print r.json()
     
