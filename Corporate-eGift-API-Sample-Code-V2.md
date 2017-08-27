@@ -139,7 +139,9 @@ Reference : https://github.com/dgwynne/php-http-signature
         // Create signature 
         $signature = hash_hmac('sha256', $data, $options['key'], true);
         // Create Authorization Header 
-        $headers['authorization'] = sprintf('Signature keyId="%s",algorithm="%s",headers="%s",signature="%s"', $options['keyId'], $options['algorithm'], implode(' ', $options['headers']), base64_encode($signature));
+        $headers['authorization'] = sprintf('Signature keyId="%s",algorithm="%s",headers="%s",signature="%s"', 
+        $options['keyId'], $options['algorithm'], implode(' ', $options['headers']), 
+        base64_encode($signature));
 
         $http_headers = array();
         foreach ($headers as $k => $v) {
