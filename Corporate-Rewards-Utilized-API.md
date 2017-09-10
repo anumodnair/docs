@@ -34,7 +34,7 @@ Returns the utilized gift details.
             },
             "brand_code": "1847",
             "country": "AE",
-            "utilized_date": "2017-08-27T11:34:12Z"
+            "utilized_date": "2017-08-27"
         },
         {
             "reference_id": "10078",
@@ -49,7 +49,7 @@ Returns the utilized gift details.
             },
             "brand_code": "1847",
             "country": "AE",
-            "utilized_date": "2017-08-27T11:34:12Z"
+            "utilized_date": "2017-06-25"
         },
         {
             "reference_id": "10045",
@@ -64,7 +64,7 @@ Returns the utilized gift details.
             },
             "brand_code": "SOUQAE",
             "country": "AE",
-            "utilized_date": "2017-08-21T16:02:49Z"
+            "utilized_date": "2017-05-27"
         }
     ]
     }
