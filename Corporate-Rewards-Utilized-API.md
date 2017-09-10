@@ -34,7 +34,7 @@ Returns the utilized gift details.
             },
             "brand_code": "1847",
             "country": "AE",
-            "utilized_date": "2017-08-27"
+            "utilized_date": "2017-08-27T11:34:12Z"
         },
         {
             "reference_id": "10078",
@@ -49,7 +49,7 @@ Returns the utilized gift details.
             },
             "brand_code": "1847",
             "country": "AE",
-            "utilized_date": "2017-08-27"
+            "utilized_date": "2017-08-27T11:34:12Z"
         },
         {
             "reference_id": "10045",
@@ -64,7 +64,7 @@ Returns the utilized gift details.
             },
             "brand_code": "SOUQAE",
             "country": "AE",
-            "utilized_date": "2017-08-21"
+            "utilized_date": "2017-08-21T16:02:49Z"
         }
     ]
     }
@@ -77,6 +77,6 @@ Returns the utilized gift details.
 | ordered_amount | float |  Gift ordered Amount |
 | extra_fields | string | Returns the extra parameter passed to the request which is sent by the client |
 | gift_voucher | array | Contains the gift code, Pin or url. This varies from brand to brand |
-| brand_code | string | Required Brand Code (Up-to-date brand list can be found at [/brands/](https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API.md#brands-catalogue), explained in detail below) |
-| country | string | Required The country to where the gift is being purchased. Available values: AE, LB, SA, QA, UK, US. see countries [/countries/](https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API.md#countries) for full list |
+| brand_code | string | Brand Code (Up-to-date brand list can be found at [/brands/](https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API.md#brands-catalogue), explained in detail below) |
+| country | string | The country to where the gift was purchased. Available values: AE, LB, SA, QA, UK, US. see countries [/countries/](https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API.md#countries) for full list |
 | utilized_date | date | Date utilized|
