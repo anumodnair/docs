@@ -385,6 +385,15 @@ Trace/retrieve your order using `/orders/<reference_id>/` by passing the `refere
 - **Accepts** `GET` only.
 - **Requires Authentication**
 
+#### `Trace/retrieve your order with Code`
+Trace/retrieve your order using `/orders/?code=<code>` by passing the `code`, It returns the order details and its status, if order was succesfully processed then returns the gift details based on the `delivery_type` of the order.
+
+- **Endpoint** `/orders/?code=<code>`
+- **Returns** JSON Object with the result of your request
+- **Accepts** `GET` only.
+- **Requires Authentication**   
+
+
 #### Response for succesfully processed gift of `delivery_type` 0
 
        GET /orders/1234D/
@@ -438,6 +447,7 @@ Trace/retrieve your order using `/orders/<reference_id>/` by passing the `refere
             },
             "country": "AE"
         }
+
 
 ### `Brands Catalogue`
 Returns the brand details of all of the countries
