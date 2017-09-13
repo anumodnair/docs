@@ -32,6 +32,13 @@ This will send you notification to your endpoint once a gift is utilized. Must p
 | reference_id | string | Reference ID sent by the client |
 | gift_voucher | array | Contains the gift code, Pin or url of the issued gift |
 
+#### Protecting Your EndPoint :  Authentication & Verification of POST Data
+
+1. Use your `API_SECRET` and `API_KEY` to generate Signature at your end , You can verify the POST data are from YouGotaGift when the signature generated at your end is matched with the Signature sent in the authorization header. Singature creation is explained [here](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md)**
+
+2. You can whitelist the IPAddress of Sandbox and Production to block other malicious traffic to your endpoint.
+
+
 ### `Test Utilize `
 Available only in sandbox environment. This is used to send PUSH notification to the provided utilized endpoint
 
