@@ -1,4 +1,4 @@
-#### Introduction
+### Introduction
 
 This documentation is part of YouGotaGift.com API v2.0. These API's can be used for retrieving the eGift Card status.
 
@@ -78,4 +78,4 @@ Available only in sandbox environment. This is used to send PUSH notification to
 
 | Parameter    | Type | Description   |
 | ------------ | ---- | ------------- |
-| gift_status | int | Status of the gift `1` : Scheduled , `2` : Delivered, `3` : Utilized   |
+| gift_status | int | Status of the gift `1` : Scheduled , `2` : Delivered, `3` : Utilized  |
