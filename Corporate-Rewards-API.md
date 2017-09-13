@@ -103,7 +103,7 @@ Available only in sandbox environment.
 | Parameter    | Type | Description   |
 | ------------ | ---- | ------------- |
 | currency | string | **Required** Currency |
-| amount | float | **Required** Amount (Numeric value). Amount should be given in the passed currency . |
+| amount | float | **Required** Amount. Amount should be given in the passed currency . |
 | reference_id | string | **Optional** Payment Reference ID |
 
 #### Request
@@ -463,6 +463,28 @@ Trace/retrieve your order using `/orders/<reference_id>/` by passing the `refere
             "country": "AE"
         }
 
+#### Common Orders Filtering
+
+Search order by gift code
+`/orders/?code=1232xxxx578323`
+
+Search order by reference_id
+`/orders/?reference_id=342232`
+
+Search order by order_id
+`/orders/?order_id=3456432`
+
+List all digital orders
+`/orders/?delivery_type=1`
+
+List all orders placed in UAE country
+`/orders/?country=AE`
+
+Filter gifts ordered for `1847` brand
+`/orders/?brand_code=184726`
+
+List the orders by page
+`/orders/?page=2` 
 
 ### `Brands Catalogue`
 Returns the brand details of all of the countries
