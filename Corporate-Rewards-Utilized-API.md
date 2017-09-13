@@ -19,7 +19,8 @@ This will send you notification to your endpoint once a gift is utilized
     }
 
 ### `Test Utilize `
-Available only in sandbox environment.
+Available only in sandbox environment. This is used to test utilize gifts
+
 - **Endpoint** `/test/utilize/`
 - **Returns** JSON Object with the result of your request
 - **Accepts** `POST` only.
@@ -40,7 +41,7 @@ Available only in sandbox environment.
 
 #### Response     
     
-    200 - You will recieve a POST to your notification endpoint explained above
+    200 - You will recieve a POST with the post data above to your notification endpoint
 
 
 #### `Trace/retrieve your order addtional fields` [Reference](https://github.com/YouGotaGift/docs/blob/codesearch-patch-2/Corporate-Rewards-API.md#list-all-orders) 
