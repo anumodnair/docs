@@ -256,7 +256,7 @@ Returns the full gift details in the response
 | barcode | string | Returns Barcode link for the applicable gift otherwise returns null |
 | pdf_link | string | Gift PDF link |
 | gift_voucher | array | Contains the gift code, Pin or url. This varies from brand to brand |
-| expiry_date | string | Expiry date of the gift |
+| expiry_date | date | Expiry date of the gift |
 | redemption_instructions | string | Redemption instructions of the gift |
 | brand_details | string | Ordered gift brand's details |
 | country | string | Ordered gift country |
