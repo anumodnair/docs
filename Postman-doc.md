@@ -6,7 +6,7 @@ The script could easily be modified for use with custom HMAC authentication sche
 
 ## Usage
 
-1. Copy the contents of [postman-pre-request-script.js](/postman/postman-pre-request-script.js) into the "Pre-request Script" tab in Postman.
+1. Copy the contents of [postman-pre-request-script.js](https://github.com/YouGotaGift/docs/blob/master/postman/pre-request-script.js) into the "Pre-request Script" tab in Postman.
 2. Create an environment and add two key-value pairs at Postman's "Manage Environments" settings dialog. `keyId` containing the ID or username of the API consumer, and `secret` containing the shared secret key.
 
     ![Manage Environments](/postman/postman-manage-env.png?raw=true)
