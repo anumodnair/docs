@@ -79,7 +79,7 @@ Here's an example of the general syntax of the Authorization header (for a reque
 
 ### `Code Snippets`
 The following code snippets provides an example of submitting a YouGotaGift API request and printing the JSON response
-
+- [`Postman`](https://github.com/YouGotaGift/docs/blob/master/Postman-doc.md)
 - [`PHP`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#php)
 - [`Python`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#python)
 - [`Java`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#java)
