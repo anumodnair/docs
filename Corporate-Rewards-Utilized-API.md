@@ -47,7 +47,7 @@ This will send you notification to your endpoint once the gift is utilized. For 
 ### `Test Utilize `
 Available only in sandbox environment. This is used to send PUSH notification to the provided utilized endpoint
 
-- **Endpoint** `/test/utilize/`
+- **Endpoint** `/push/utilize/`
 - **Returns** JSON Object with the result of your request
 - **Accepts** `POST` only.
 - **Requires Authentication**
@@ -59,7 +59,7 @@ Available only in sandbox environment. This is used to send PUSH notification to
 
 #### Request
 
-    POST /test/utilize/ 
+    POST /push/utilize/ 
     
         {
             "order_id": 12335
