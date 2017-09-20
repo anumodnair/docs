@@ -32,8 +32,8 @@ This documentation is part of YouGotaGift.com API v2.0. These API's can be used 
         "redemption_reference_id": "abcxyz",
         "gift_token": "fXDIeaRwXPHh5UVJp3PW1SdSEtrwGcMwB",
         "order_id": "405541",
-        "store_staff": "",
-        "store_location": ""
+        "store_staff": "virgin staff",
+        "store_location": "Dubai"
     }
 
 
@@ -97,7 +97,7 @@ This documentation is part of YouGotaGift.com API v2.0. These API's can be used 
                 },
                 "extra_fields": null,
                 "brand_code": "VRGN",
-                "receiver_name": "ddd",
+                "receiver_name": "shameem",
                 "receiver_email": "shameem@yougotagift.com",
                 "receiver_phone": ""
             }
