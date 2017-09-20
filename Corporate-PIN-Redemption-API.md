@@ -29,7 +29,7 @@ This documentation is part of YouGotaGift.com API v2.0. These API's can be used 
         "redemption_pin": "1234",
         "redemption_reference_id": "abcxyz",
         "gift_token": "fXDIeaRwXPHh5UVJp3PW1SdSEtrwGcMwB",
-        "order_id": "405541",
+        "order_id": "405541"
     }
 
 
