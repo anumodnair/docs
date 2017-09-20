@@ -60,7 +60,7 @@ This documentation is part of YouGotaGift.com API v2.0. These API's can be used 
 
 #### Request
 
-GET /orders/?redemption_reference_id=abcxyzk
+    GET /orders/?redemption_reference_id=abcxyzk
 
     HTTP 200 OK
     Content-Type: application/json
