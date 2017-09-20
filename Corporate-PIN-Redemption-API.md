@@ -7,11 +7,6 @@
 
 This documentation is part of YouGotaGift.com API v2.0. These API's can be used for redeem the eGift Card using retailer pin.
 
-#### How It Works
-
-The YouGotaGift.com API is a HTTP API, which can be called with simple HTTP GET/POST and the result will be in JSON.
-
-
 ### `Redeem`
 - **Endpoint** `/gift/redeem/`
 - **Returns** JSON Object with the result of your request
