@@ -23,7 +23,7 @@ The script can be modified for other custom HMAC authentication schemes.
 
     As shown below:
     ![Headers](/postman/Headers.png?raw=true)
-5. Send the request to http://sandbox.yougotagift.com/corporate/api/v2/account/. 
+5. Send the request to `/account/`. 
 
 
 ## Reference
