@@ -62,58 +62,58 @@ This documentation is part of YouGotaGift.com API v2.0. These API's can be used 
 
 GET /orders/?redemption_reference_id=abcxyzk
 
-HTTP 200 OK
-Content-Type: application/json
-Vary: Accept
-Allow: GET, HEAD
+    HTTP 200 OK
+    Content-Type: application/json
+    Vary: Accept
+    Allow: GET, HEAD
 
-{
-    "total_count": 1,
-    "total_page": 1,
-    "current_page": 1,
-    "current_page_count": 1,
-    "next": null,
-    "previous": null,
-    "orders": [
-        {
-            "gift_token": "fXDIeaRwXPHh5UVJp3PW1SdSEtrwGcMwB",
-            "reference_id": "",
-            "order_id": 405541,
-            "state": 1,
-            "utilized_details": {
-                "redemption_reference_id": "abcxyzk",
-                "redemption_id": "YT-1-64211",
-                "utilized_date": "2017-09-20T13:45:21Z",
-                "brand_code": "VRGN"
-            },
-            "gift_status": 3,
-            "delivery_type": 1,
-            "ordered_amount": {
-                "currency": "AED",
-                "amount": 10
-            },
-            "extra_fields": null,
-            "brand_accepted_amount": {
-                "currency": "AED",
-                "amount": 10
-            },
-            "barcode": "http://yougotagift.com/gifts/barcode/generate/4827709516917/",
-            "pdf_link": "http://gotagift.co/uJuOG7E",
-            "gift_voucher": {
-                "code": "4827709516917"
-            },
-            "expiry_date": "2018-09-20",
-            "redemption_instructions": "This eGift Card is redeemable for any merchandise offered in any Virgin Megastore across the UAE.\r\nThis eGift Card is only valid for a one time purchase to the full value unless otherwise specified.",
-            "brand_details": {
-                "logo": "http://local.yougotagift.com:11000/media/images/cards/fb/virgin-megastore-uae-FB-300x300.png",
-                "product_image": "http://local.yougotagift.com:11000/media/images/cards/print/virgin-megastore-uae-print.png",
-                "code": "VRGN",
-                "name": "Virgin Megastore"
-            },
-            "country": "AE"
-        }
-    ]
-}
+    {
+        "total_count": 1,
+        "total_page": 1,
+        "current_page": 1,
+        "current_page_count": 1,
+        "next": null,
+        "previous": null,
+        "orders": [
+            {
+                "gift_token": "fXDIeaRwXPHh5UVJp3PW1SdSEtrwGcMwB",
+                "reference_id": "",
+                "order_id": 405541,
+                "state": 1,
+                "utilized_details": {
+                    "redemption_reference_id": "abcxyzk",
+                    "redemption_id": "YT-1-64211",
+                    "utilized_date": "2017-09-20T13:45:21Z",
+                    "brand_code": "VRGN"
+                },
+                "gift_status": 3,
+                "delivery_type": 1,
+                "ordered_amount": {
+                    "currency": "AED",
+                    "amount": 10
+                },
+                "extra_fields": null,
+                "brand_accepted_amount": {
+                    "currency": "AED",
+                    "amount": 10
+                },
+                "barcode": "http://yougotagift.com/gifts/barcode/generate/4827709516917/",
+                "pdf_link": "http://gotagift.co/uJuOG7E",
+                "gift_voucher": {
+                    "code": "4827709516917"
+                },
+                "expiry_date": "2018-09-20",
+                "redemption_instructions": "This eGift Card is redeemable for any merchandise offered in any Virgin Megastore across the UAE.\r\nThis eGift Card is only valid for a one time purchase to the full value unless otherwise specified.",
+                "brand_details": {
+                    "logo": "http://local.yougotagift.com:11000/media/images/cards/fb/virgin-megastore-uae-FB-300x300.png",
+                    "product_image": "http://local.yougotagift.com:11000/media/images/cards/print/virgin-megastore-uae-print.png",
+                    "code": "VRGN",
+                    "name": "Virgin Megastore"
+                },
+                "country": "AE"
+            }
+        ]
+    }
 
 In the above response, `utilized_details` key will provide the gift utilized details.
 
