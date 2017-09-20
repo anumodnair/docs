@@ -70,45 +70,48 @@ The YouGotaGift.com API is a HTTP API, which can be called with simple HTTP GET/
 
 #### How to retrieve redeemed gifts using client redemption_reference_id
 
-GET orders/?redemption_reference_id=abcxyz
-HTTP 200 OK
-Content-Type: application/json
-Vary: Accept
-Allow: GET, HEAD
 
-{
-    "total_count": 1,
-    "total_page": 1,
-    "current_page": 1,
-    "current_page_count": 1,
-    "next": null,
-    "previous": null,
-    "orders": [
-        {
-            "gift_token": "fXDIeaRwXPHh5UVJp3PW1SdSEtrwGcMwB",
-            "reference_id": "",
-            "order_id": 405541,
-            "state": 1,
-            "utilized_details": {
-                "redemption_reference_id": "abcxyz",
-                "redemption_id": "YT-1-64202",
-                "utilized_date": "2017-09-20T10:29:40Z",
-                "brand": 10
-            },
-            "gift_status": 3,
-            "delivery_type": 0,
-            "ordered_amount": {
-                "currency": "AED",
-                "amount": 300
-            },
-            "extra_fields": null,
-            "brand_code": "VRGN",
-            "receiver_name": "ddd",
-            "receiver_email": "shameem@yougotagift.com",
-            "receiver_phone": ""
-        }
-    ]
-}
+#### Request
+
+    GET orders/?redemption_reference_id=abcxyz
+    HTTP 200 OK
+    Content-Type: application/json
+    Vary: Accept
+    Allow: GET, HEAD
+
+    {
+        "total_count": 1,
+        "total_page": 1,
+        "current_page": 1,
+        "current_page_count": 1,
+        "next": null,
+        "previous": null,
+        "orders": [
+            {
+                "gift_token": "fXDIeaRwXPHh5UVJp3PW1SdSEtrwGcMwB",
+                "reference_id": "",
+                "order_id": 405541,
+                "state": 1,
+                "utilized_details": {
+                    "redemption_reference_id": "abcxyz",
+                    "redemption_id": "YT-1-64202",
+                    "utilized_date": "2017-09-20T10:29:40Z",
+                    "brand": 10
+                },
+                "gift_status": 3,
+                "delivery_type": 0,
+                "ordered_amount": {
+                    "currency": "AED",
+                    "amount": 300
+                },
+                "extra_fields": null,
+                "brand_code": "VRGN",
+                "receiver_name": "ddd",
+                "receiver_email": "shameem@yougotagift.com",
+                "receiver_phone": ""
+            }
+        ]
+    }
 
 In the above response, "utilized_details" key will provide the gift redemption details.
 
