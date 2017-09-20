@@ -11,10 +11,6 @@ This documentation is part of YouGotaGift.com API v2.0. These API's can be used 
 
 The YouGotaGift.com API is a HTTP API, which can be called with simple HTTP GET/POST and the result will be in JSON.
 
-#### API Endpoints
-
-* All the API points return JSON responses
-* All the API points are callable using HTTP methods `GET` or `POST`
 
 ### `Redeem`
 - **Endpoint** `/gift/redeem/`
