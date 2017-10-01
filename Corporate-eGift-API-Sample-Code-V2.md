@@ -459,6 +459,7 @@ The following code snippets provides an example of submitting a YouGotaGift API 
                                 IRestResponse response; 
 
                                 var request = new RestRequest(Method.POST); 
+                                // Date in UTC
                                 string utcdate = DateTime.UtcNow.ToString("s") + "Z"; 
                                 string stringtosign = "x-date: " + utcdate; 
                                 string sign = CreateSignature(secret, stringtosign); 
@@ -474,7 +475,7 @@ The following code snippets provides an example of submitting a YouGotaGift API 
                                 apiResponse = response.Content.ToString(); 
                                 return apiResponse; 
                         } 
-
+                        // Creating Signature
                         public static string CreateSignature(string secrete, string stringtosign) 
                         { 
                                 var secretBytes = Encoding.UTF8.GetBytes(secrete); 
