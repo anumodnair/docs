@@ -91,7 +91,7 @@ The following code snippets provides an example of submitting a YouGotaGift API 
         <?php
         $apiKey = 'NGJHIVCEHBZCODYQC0EF';
         $apiSecret = 'MK6Go9VxfyVykdHTaW6UyHpJCW7c1mP9R1qCwqCH';
-        $fullURLString = 'http://xxxxxxxxxxxx/order/';
+        $fullURLString = 'https://xxxxxxxxxxxx/order/';
         
         $options = array(
             'key' => $apiSecret,
@@ -147,7 +147,7 @@ The following code snippets provides an example of submitting a YouGotaGift API 
     API_KEY = 'NGJHIVCEHBZCODYQC0EF'
     API_SECRET = 'MK6Go9VxfyVykdHTaW6UyHpJCW7c1mP9R1qCwqCH'
 
-    uri = "http://xxxxxxxxxxx/brands/{brand_code}/"
+    uri = "https://xxxxxxxxxxx/brands/{brand_code}/"
     uri = uri.format(
             brand_code=1847)
 
@@ -172,7 +172,7 @@ The following code snippets provides an example of submitting a YouGotaGift API 
         'currency': 'AED',
         'delivery_type': 1
     }
-    uri = "http://xxxxxxxxxxx/order/"
+    uri = "https://xxxxxxxxxxx/order/"
     r = requests.post(uri, json=payload, auth=auth, headers=headers)
     print r.json()
     
@@ -245,11 +245,11 @@ The following code snippets provides an example of submitting a YouGotaGift API 
             RequestSigner signer = new RequestSigner(apiKey, privateKey);
 
             // GET with query parameters
-            String uriget = "http://xxxxxxxxxx/account/";
+            String uriget = "https://xxxxxxxxxx/account/";
 
             request = new HttpGet(uriget);
             request.setHeader("Accept", "application/json");
-            request.setHeader("host", "http://xxxxxxxxxx");
+            request.setHeader("host", "https://xxxxxxxxxx");
             request.setHeader("X-Api-Key", apiKey);
             request.setHeader("Date", Instant.now().toString());
             signer.signRequest(request);
@@ -264,10 +264,10 @@ The following code snippets provides an example of submitting a YouGotaGift API 
             httpClientrequest.getConnectionManager().shutdown();
 
             // POST with body
-            String uri = "http://xxxxxxxxxx/order/";
+            String uri = "https://xxxxxxxxxx/order/";
             HttpPost postRequest = new HttpPost(uri);
             postRequest.setHeader("Accept", "application/json");
-            postRequest.setHeader("host", "http://xxxxxxxxxx");
+            postRequest.setHeader("host", "https://xxxxxxxxxx");
             postRequest.setHeader("X-Api-Key", apiKey);
             postRequest.setHeader("Date", Instant.now().toString());
             StringEntity input = new StringEntity("{\"reference_id\": 987667, "
