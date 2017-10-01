@@ -447,52 +447,52 @@ The following code snippets provides an example of submitting a YouGotaGift API 
         using System.Security.Cryptography; 
         namespace ConsoleApp3 
         { 
-        class Program 
-        { 
-        public static string GetResponseFromAPI() 
-        { 
-        string url = "https://XYZ/v2/order/"; 
-        string key = "API_KEY"; 
-        string secret = "API_SECRET"; 
-        string apiResponse = String.Empty; 
-        var client = new RestClient(url); 
-        IRestResponse response; 
+                class Program 
+                { 
+                        public static string GetResponseFromAPI() 
+                        { 
+                                string url = "https://XYZ/v2/order/"; 
+                                string key = "API_KEY"; 
+                                string secret = "API_SECRET"; 
+                                string apiResponse = String.Empty; 
+                                var client = new RestClient(url); 
+                                IRestResponse response; 
 
-        var request = new RestRequest(Method.POST); 
-        string utcdate = DateTime.UtcNow.ToString("s") + "Z"; 
-        string stringtosign = "x-date: " + utcdate; 
-        string sign = CreateSignature(secret, stringtosign); 
-        var authorizationHeader = "Signature headers=\"x-date\",keyId=\""+ key + "\",algorithm=\"hmac-sha256\",signature=\"" + sign+"\""; 
-        request.RequestFormat = DataFormat.Json; 
-        request.AddBody(new { reference_id = "1102", brand_code = "1847", country = "AE", amount = 200, currency = "AED" , delivery_type = "1" }); 
-        request.AddHeader("Accept", "application/json"); 
-        request.AddHeader("Content-type", "application/json"); 
-        request.AddHeader("Authorization", authorizationHeader); 
-        request.AddHeader("X-Api-Key", key); 
-        request.AddHeader("X-Date", utcdate); 
-        response = client.Execute(request); 
-        apiResponse = response.Content.ToString(); 
-        return apiResponse; 
-        } 
+                                var request = new RestRequest(Method.POST); 
+                                string utcdate = DateTime.UtcNow.ToString("s") + "Z"; 
+                                string stringtosign = "x-date: " + utcdate; 
+                                string sign = CreateSignature(secret, stringtosign); 
+                                var authorizationHeader = "Signature headers=\"x-date\",keyId=\""+ key + "\",algorithm=\"hmac-sha256\",signature=\"" + sign+"\""; 
+                                request.RequestFormat = DataFormat.Json; 
+                                request.AddBody(new { reference_id = "1102", brand_code = "1847", country = "AE", amount = 200, currency = "AED" , delivery_type = "1" }); 
+                                request.AddHeader("Accept", "application/json"); 
+                                request.AddHeader("Content-type", "application/json"); 
+                                request.AddHeader("Authorization", authorizationHeader); 
+                                request.AddHeader("X-Api-Key", key); 
+                                request.AddHeader("X-Date", utcdate); 
+                                response = client.Execute(request); 
+                                apiResponse = response.Content.ToString(); 
+                                return apiResponse; 
+                        } 
 
-        public static string CreateSignature(string secrete, string stringtosign) 
-        { 
-        var secretBytes = Encoding.UTF8.GetBytes(secrete); 
-        var valueBytes = Encoding.UTF8.GetBytes(stringtosign); 
-        string signature; 
+                        public static string CreateSignature(string secrete, string stringtosign) 
+                        { 
+                                var secretBytes = Encoding.UTF8.GetBytes(secrete); 
+                                var valueBytes = Encoding.UTF8.GetBytes(stringtosign); 
+                                string signature; 
 
-        using (var hmac = new HMACSHA256(secretBytes)) 
-        { 
-        var hash = hmac.ComputeHash(valueBytes); 
-        signature = Convert.ToBase64String(hash); 
-        } 
-        return signature; 
-        } 
+                                using (var hmac = new HMACSHA256(secretBytes)) 
+                                { 
+                                var hash = hmac.ComputeHash(valueBytes); 
+                                signature = Convert.ToBase64String(hash); 
+                                } 
+                                return signature; 
+                        } 
 
-        static void Main(string[] args) 
-        { 
-        Console.Write(GetResponseFromAPI()); 
-        Console.ReadLine(); 
-        } 
-        } 
+                        static void Main(string[] args) 
+                        { 
+                                Console.Write(GetResponseFromAPI()); 
+                                Console.ReadLine(); 
+                        } 
+                } 
         } 
