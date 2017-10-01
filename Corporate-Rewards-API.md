@@ -944,3 +944,138 @@ A few brands will have `retailers` list where the brand gift card can be redeeme
             ]
         }
        
+ ### `Credentials`
+ You will get all credentials till generated
+- **Endpoint** `/credentials/`
+- **Returns** JSON Object with the result of your request
+- **Accepts** `GET` only.
+- **Requires Authentication**
+
+#### Response
+
+        HTTP 200 OK
+        Content-Type: application/json
+        Vary: Accept
+        Allow: GET, HEAD
+
+        {
+            "total_count": 15,
+            "total_page": 1,
+            "current_page": 1,
+            "current_page_count": 15,
+            "next": null,
+            "previous": null,
+            "credentials": [
+                {
+                    "date_added": "2017-09-19T09:02:27Z",
+                    "api_key": "EIHHLG2Y1M1OPLLGF51H",
+                    "api_secret": "7XpCdUJVNabu78zDH9ADd9c07fig1E0lUuxMfoy8",
+                    "date_expired": "2018-09-14 09:02:27+00:00",
+                    "is_active": true
+                },
+                {
+                    "date_added": "2017-09-19T09:02:25Z",
+                    "api_key": "Q7UB1D2IZUZ9HWUHPISY",
+                    "api_secret": "2gVvcwi8POhrAqoySNQHSwSEn8OGz2FbWgvSwOQQ",
+                    "date_expired": "2018-09-14 09:02:25+00:00",
+                    "is_active": false
+                },
+                {
+                    "date_added": "2017-09-19T09:02:08Z",
+                    "api_key": "2RXKVHVW4IUXWR1HRV5Q",
+                    "api_secret": "2JfxMRrQIa4BvMABHEpLwPzZA59wXoxXLu99OcLh",
+                    "date_expired": "2018-09-14 09:02:08+00:00",
+                    "is_active": false
+                }
+            ]
+        }
+   
+### `Credentials Generate`
+To generate a new credentials
+- **Endpoint** `/credentials/generate/`
+- **Returns** JSON Object with the result of your request
+- **Accepts** `GET` only.
+- **Requires Authentication**
+
+#### Response
+
+
+        HTTP 200 OK
+        Content-Type: application/json
+        Vary: Accept
+        Allow: GET, HEAD
+
+        {
+            "date_added": "2017-10-01T13:57:28.681938Z",
+            "api_key": "JMWIB0YUDTJSDJAPRW9D",
+            "api_secret": "aL2FHAursDRrNFmExap8EYwlHiEO5OP5dhMH7HPP",
+            "date_expired": "2018-09-26 17:57:28.685060",
+            "is_active": false
+        }
+        
+        
+### `Credentials Activate`
+
+- **Endpoint** `/credentials/activate/`
+- **Returns** JSON Object with the result of your request
+- **Accepts** `POST` only.
+- **Requires Authentication**
+
+#### Request Parameters
+| Parameter    | Type | Description   |
+| ------------ | ---- | ------------- |
+| api_key | string | **Required** API Key you created using `/credentials/generate/` call|
+
+#### Request
+
+    POST /credentials/activate/
+    
+        {
+            "api_key": "JMWIB0YUDTJSDJAPRW9D",
+        }
+
+#### Response     
+    
+        HTTP 200 OK
+        Content-Type: application/json
+        Vary: Accept
+        Allow: POST
+
+        {
+            "state": 1,
+            "message": "Key activated"
+        }
+        
+| Parameter    | Type | Description   |
+| ------------ | ---- | ------------- |
+| state | int | `0` : Failed, `1` : succeeded |
+| message | string | Response from api  |
+
+#### Response when key expired
+
+        HTTP 400 Bad Request
+        Content-Type: application/json
+        Vary: Accept
+        Allow: POST
+
+        {
+            "state": 0,
+            "errors": {
+                "message": "Key expired on 2017-09-19 06:11:46+00:00. Please generate a new key and try again",
+                "code": 2009
+            }
+        }
+
+#### Response when key invalid       
+        HTTP 400 Bad Request
+        Content-Type: application/json
+        Vary: Accept
+        Allow: POST
+
+        {
+            "state": 0,
+            "errors": {
+                "message": "Invalid Key",
+                "code": 2010
+            }
+        }
