@@ -451,7 +451,7 @@ The following code snippets provides an example of submitting a YouGotaGift API 
         { 
         public static string GetResponseFromAPI() 
         { 
-        string url = "http://XYZ/v2/order/"; 
+        string url = "https://XYZ/v2/order/"; 
         string key = "API_KEY"; 
         string secret = "API_SECRET"; 
         string apiResponse = String.Empty; 
