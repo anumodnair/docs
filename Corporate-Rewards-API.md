@@ -361,7 +361,8 @@ Order Failed
             "next": "https://xxxxxxxxxxxxx/orders/?page=2",
             "previous": null,
             "orders": [
-                {
+                {   
+                    "gift_token": "fXDIegleTzFSkBBuXaI83yx9qqt05hU0E",
                     "reference_id": "65377",
                     "order_id": 5718,
                     "state": 1,
@@ -377,6 +378,7 @@ Order Failed
                     "extra_fields": ""
                 },
                 {
+                    "gift_token": "erDIegleTzFSkBeuXaI83yx9qqt05hUws",
                     "reference_id": "12331",
                     "order_id": 5737,
                     "state": 1,
