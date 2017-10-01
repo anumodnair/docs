@@ -83,7 +83,7 @@ The following code snippets provides an example of submitting a YouGotaGift API 
 - [`PHP`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#php)
 - [`Python`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#python)
 - [`Java`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#java)
-- [`C#`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#C#)
+- [`C#`](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#c)
 
 
 ### PHP
