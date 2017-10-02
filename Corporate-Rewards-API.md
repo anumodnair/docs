@@ -959,10 +959,10 @@ A few brands will have `retailers` list where the brand gift card can be redeeme
         Allow: GET, HEAD
 
         {
-            "total_count": 15,
+            "total_count": 3,
             "total_page": 1,
             "current_page": 1,
-            "current_page_count": 15,
+            "current_page_count": 3,
             "next": null,
             "previous": null,
             "credentials": [
