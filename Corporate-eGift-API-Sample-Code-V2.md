@@ -19,6 +19,7 @@ Authentication is done by signing HTTP requests with secure signatures
 3. The `Signature` parameter is built from `API_SECRET` + `timestamp` which is hmac-sha256 encrypted and later Hex encoded.
 
 *Note: Each request requires new `Signature` built with the current timestamp to be submitted.*
+
 *Note: Date field you are sending in header and the date you are signing must be same same timestamp.*
 
 ##### Specification You Need to Be Familiar With:
