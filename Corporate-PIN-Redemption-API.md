@@ -97,16 +97,16 @@ This documentation is part of YouGotaGift.com API v2.0. These API's can be used 
                     "currency": "AED",
                     "amount": 10
                 },
-                "barcode": "http://yougotagift.com/gifts/barcode/generate/4827709516917/",
-                "pdf_link": "http://gotagift.co/uJuOG7E",
+                "barcode": "https://xxxxxx.com/gifts/barcode/generate/4827709516917/",
+                "pdf_link": "http://xxxxxx.com/uJuOG7E",
                 "gift_voucher": {
                     "code": "4827709516917"
                 },
                 "expiry_date": "2018-09-20",
                 "redemption_instructions": "This eGift Card is redeemable for any merchandise offered in any Virgin Megastore across the UAE.\r\nThis eGift Card is only valid for a one time purchase to the full value unless otherwise specified.",
                 "brand_details": {
-                    "logo": "http://local.yougotagift.com:11000/media/images/cards/fb/virgin-megastore-uae-FB-300x300.png",
-                    "product_image": "http://local.yougotagift.com:11000/media/images/cards/print/virgin-megastore-uae-print.png",
+                    "logo": "http://xxxxxx.com/media/images/cards/fb/virgin-megastore-uae-FB-300x300.png",
+                    "product_image": "http://xxxxxx.com/media/images/cards/print/virgin-megastore-uae-print.png",
                     "code": "VRGN",
                     "name": "Virgin Megastore"
                 },
