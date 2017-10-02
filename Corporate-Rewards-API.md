@@ -970,21 +970,21 @@ A few brands will have `retailers` list where the brand gift card can be redeeme
                     "date_added": "2017-09-19T09:02:27Z",
                     "api_key": "EIHHLG2Y1M1OPLLGF51H",
                     "api_secret": "7XpCdUJVNabu78zDH9ADd9c07fig1E0lUuxMfoy8",
-                    "date_expired": "2018-09-14 09:02:27+00:00",
+                    "expiry_date": "2018-09-14 09:02:27+00:00",
                     "is_active": true
                 },
                 {
                     "date_added": "2017-09-19T09:02:25Z",
                     "api_key": "Q7UB1D2IZUZ9HWUHPISY",
                     "api_secret": "2gVvcwi8POhrAqoySNQHSwSEn8OGz2FbWgvSwOQQ",
-                    "date_expired": "2018-09-14 09:02:25+00:00",
+                    "expiry_date": "2018-09-14 09:02:25+00:00",
                     "is_active": false
                 },
                 {
                     "date_added": "2017-09-19T09:02:08Z",
                     "api_key": "2RXKVHVW4IUXWR1HRV5Q",
                     "api_secret": "2JfxMRrQIa4BvMABHEpLwPzZA59wXoxXLu99OcLh",
-                    "date_expired": "2018-09-14 09:02:08+00:00",
+                    "expiry_date": "2018-09-14 09:02:08+00:00",
                     "is_active": false
                 }
             ]
@@ -1009,7 +1009,7 @@ To generate a new credentials
             "date_added": "2017-10-01T13:57:28.681938Z",
             "api_key": "JMWIB0YUDTJSDJAPRW9D",
             "api_secret": "aL2FHAursDRrNFmExap8EYwlHiEO5OP5dhMH7HPP",
-            "date_expired": "2018-09-26 17:57:28.685060",
+            "expiry_date": "2018-09-26 17:57:28.685060",
             "is_active": false
         }
         
