@@ -945,7 +945,7 @@ A few brands will have `retailers` list where the brand gift card can be redeeme
         }
        
  ### `Credentials`
- You will get all credentials till generated
+Returns all the credentials generated till now
 - **Endpoint** `/credentials/`
 - **Returns** JSON Object with the result of your request
 - **Accepts** `GET` only.
@@ -991,7 +991,7 @@ A few brands will have `retailers` list where the brand gift card can be redeeme
         }
    
 ### `Credentials Generate`
-To generate a new credentials
+Generates a new Credentials
 - **Endpoint** `/credentials/generate/`
 - **Returns** JSON Object with the result of your request
 - **Accepts** `GET` only.
