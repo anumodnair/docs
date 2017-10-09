@@ -21,7 +21,7 @@ The following tables describe the endpoints provided by the service for your sys
 
 <table>
 <tr>
-<td><strong>URL</strong></td><td>https://yougotagift.com/merchant/api/check/ </td>
+<td><strong>URL</strong></td><td>https://sandbox.yougotagift.com/merchant/api/check/ </td>
 </tr>
 <tr>
 <td><strong>HTTP Method</strong></td><td>POST</td>
@@ -77,7 +77,7 @@ An error is:
 
 <table>
 <tr>
-<td><strong>URL</strong></td><td> https://yougotagift.com/merchant/api/redeem/</td>
+<td><strong>URL</strong></td><td> https://sandbox.yougotagift.com/merchant/api/redeem/</td>
 </tr>
 <tr>
 <td><strong>HTTP Method</strong></td><td>POST</td>
@@ -130,7 +130,7 @@ An error is:
 <table>
   <tr>
     <td><strong>URL</strong></td>
-    <td>https://yougotagift.com/merchant/api/cancel/</td>
+    <td>https://sandbox.yougotagift.com/merchant/api/cancel/</td>
   </tr>
   <tr>
     <td><strong>HTTP Method</strong></td>
@@ -187,7 +187,7 @@ An error is:
 <table>
   <tr>
     <td><strong>URL</strong></td>
-    <td> https://yougotagift.com/merchant/api/redeemed/ </td>
+    <td> https://sandbox.yougotagift.com/merchant/api/redeemed/ </td>
   </tr>
   <tr>
     <td><strong>HTTP Method</strong></td>
