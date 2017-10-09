@@ -55,6 +55,7 @@ The YouGotaGift.com API is a HTTP API, which can be called with simple HTTP GET/
 | HTTP 403 - Forbidden | Request credentials are invalid. |
 | HTTP 404 - Not Found | Resource does not exist. |
 | HTTP 409 - Conflict | Resource already exists. |
+| HTTP 429 - Too Many Requests | Your client has sent too many requests. |
 | HTTP 500 | An error occured from our end. |
 
 ### `Errors`
@@ -69,6 +70,7 @@ Returns the account details including current account balance. All the options s
 - **Returns** JSON Object with the result of your request
 - **Accepts** `GET` only.
 - **Requires Authentication**
+- **Rate Limited**
 
 #### Response
 
@@ -343,6 +345,7 @@ Order Failed
 - **Returns** JSON Object with the result of your request
 - **Accepts** `GET` only.
 - **Requires Authentication**
+- **Rate Limited** 
 
 #### Response
 
@@ -408,6 +411,7 @@ Trace/retrieve your order using `/orders/<reference_id>/` by passing the `refere
 - **Returns** JSON Object with the result of your request
 - **Accepts** `GET` only.
 - **Requires Authentication**
+- **Rate Limited**
 
 #### Response for succesfully processed gift of `delivery_type` 0
 
@@ -493,6 +497,7 @@ Returns the brand details of all of the countries
 - **Returns** JSON Object with the result of your request
 - **Accepts** `GET` only.
 - **Requires Authentication**
+- **Rate Limited**
 
 #### Response Parameters
 | Parameter    | Type | Description   |
@@ -676,6 +681,7 @@ Returns the brand location details of a brand
 - **Returns** JSON Object with the result of your request
 - **Accepts** `GET` only.
 - **Requires Authentication**
+- **Rate Limited**
 
 #### Response
 Brand location details are available under `store_locations`
@@ -756,6 +762,7 @@ A few brands will have `retailers` list where the brand gift card can be redeeme
 - **Returns** JSON Object with the result of your request
 - **Accepts** `GET` only.
 - **Requires Authentication**
+- **Rate Limited**
 
 #### Response
 
@@ -832,6 +839,7 @@ A few brands will have `retailers` list where the brand gift card can be redeeme
 - **Returns** JSON Object with the result of your request
 - **Accepts** `GET` only.
 - **Requires Authentication**
+- **Rate Limited**
 
 #### Response
     
@@ -888,6 +896,7 @@ A few brands will have `retailers` list where the brand gift card can be redeeme
 - **Returns** JSON Object with the result of your request
 - **Accepts** `GET` only.
 - **Requires Authentication**
+- **Rate Limited**
 
 #### Response
 
@@ -950,6 +959,7 @@ Returns all the credentials generated till now
 - **Returns** JSON Object with the result of your request
 - **Accepts** `GET` only.
 - **Requires Authentication**
+- **Rate Limited**
 
 #### Response
 
@@ -996,6 +1006,7 @@ Generates a new Credentials
 - **Returns** JSON Object with the result of your request
 - **Accepts** `GET` only.
 - **Requires Authentication**
+- **Rate Limited**
 
 #### Response
 
@@ -1079,3 +1090,14 @@ Generates a new Credentials
                 "code": 2010
             }
         }
+
+### Important Points to handle
+
+- `account` : Automatic balance check can be implemented by calling `account` API, it will help you in funding the account before it runs out of credit. Thus helping you to achieve an uninterrupted service
+- `Rate Limit` : Do makes sure you save the data returned by the API's which has rate limit set and reuse the data from your application.
+- `brands` : Brands details has a rate limit set, and it is adviced to save the brands details once in your application and sync it once in a week.
+- `orders` : `brand_accepted_amount` is an important key returned in `orders` API call, Brand will accept a gift card to redeem only if presented in the currency and amount returned by this key.
+- `orders` : Makes sure you save all of the key value returned in `gift_voucher` key. It contains all of the important details required to redeem a gift
+- `orders` : Makes sure you pass a `reference_id` for an order which uniquely identifies the request initiated by your application, it helps in reconcilation and prevents duplicate order processing
+- If any connection interruption occured after making a call to `/order/` API, makes sure you handled the process listed here https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API.md#sample-error-response-2-1 to prevent any duplicate order processing
+- `Authentication` : Makes sure you have handled the notes mentioned here https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#note
