@@ -1093,11 +1093,11 @@ Generates a new Credentials
 
 ### Important Points to handle
 
-- `account` : Automatic balance check can be implemented by calling `account` API, it will help you in funding the account before it runs out of credit. Thus helping you to achieve an uninterrupted service
-- `Rate Limit` : Do makes sure you save the data returned by the API's which has rate limit set and reuse the data from your application.
-- `brands` : Brands details has a rate limit set, and it is adviced to save the brands details once in your application and sync it once in a week.
-- `orders` : `brand_accepted_amount` is an important key returned in `orders` API call, Brand will accept a gift card to redeem only if presented in the currency and amount returned by this key.
-- `orders` : Makes sure you save all of the key value returned in `gift_voucher` key. It contains all of the important details required to redeem a gift
-- `orders` : Makes sure you pass a `reference_id` for an order which uniquely identifies the request initiated by your application, it helps in reconcilation and prevents duplicate order processing
-- If any connection interruption occured after making a call to `/order/` API, makes sure you handled the process listed here https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API.md#sample-error-response-2-1 to prevent any duplicate order processing
-- `Authentication` : Makes sure you have handled the notes mentioned here https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#note
+- `account` : Automatic balance check can be implemented by calling `account` API, it will help you in replenishing your account before it runs out of credit, thus helping you to having an uninterrupted service
+- `Rate Limit` : Save the data returned by the API in your application, for the API endpoints which has rate limit set. This is mandatory as YouGotaGift.com accepts only limited requests and this action will help in overcome this scenario.
+- `brands` : This API endpoint has a rate limit set and it is adviced to save the brands details in your application. We recommend to sync it once in a fortnight as new brand addition doesn't happen freqeuntly.
+- `orders` : `brand_accepted_amount` is an important key returned in `orders` API call. Always present the Gift with the currency and amount returned in this key. If the Gift is presented in any other currency to the retailer, then retailer will reject the gift from redeeming.
+- `gift_voucher` key in `order` API Call :  All of the key values returned in `gift_voucher` key need to be shared with end user. This has mandatory elements required to redeem a gift.
+- `orders` : Makes sure you pass a `reference_id` for each and every order, which uniquely identifies the request initiated from your end. This helps in reconcilation and also prevents duplicate order getting processed.
+- If any connection interruption occured after making a call to `/order/` API, please follow the steps highlighted in this [link]( https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API.md#sample-error-response-2-1) to prevent any duplicate order getting processed
+- `Authentication` : Follow the steps highlighed in this [link](https://github.com/YouGotaGift/docs/blob/master/Corporate-eGift-API-Sample-Code-V2.md#note), while authenticating the API
