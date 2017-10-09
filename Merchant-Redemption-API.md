@@ -21,7 +21,7 @@ The following tables describe the endpoints provided by the service for your sys
 
 <table>
 <tr>
-<td><strong>URL</strong></td><td>https://yougotagift.com/merchant/api/check/ </td>
+<td><strong>URL</strong></td><td>/api/check/ </td>
 </tr>
 <tr>
 <td><strong>HTTP Method</strong></td><td>POST</td>
@@ -77,7 +77,7 @@ An error is:
 
 <table>
 <tr>
-<td><strong>URL</strong></td><td> https://yougotagift.com/merchant/api/redeem/</td>
+<td><strong>URL</strong></td><td> /api/redeem/</td>
 </tr>
 <tr>
 <td><strong>HTTP Method</strong></td><td>POST</td>
@@ -130,7 +130,7 @@ An error is:
 <table>
   <tr>
     <td><strong>URL</strong></td>
-    <td>https://yougotagift.com/merchant/api/cancel/</td>
+    <td>/api/cancel/</td>
   </tr>
   <tr>
     <td><strong>HTTP Method</strong></td>
@@ -187,7 +187,7 @@ An error is:
 <table>
   <tr>
     <td><strong>URL</strong></td>
-    <td> https://yougotagift.com/merchant/api/redeemed/ </td>
+    <td> /api/redeemed/ </td>
   </tr>
   <tr>
     <td><strong>HTTP Method</strong></td>
@@ -245,7 +245,7 @@ You must call these API access points using a Sandbox account ONLY, otherwise it
 #### Request
 
 ```
-POST /merchant/api/redeem/ HTTP/1.1
+POST /api/redeem/ HTTP/1.1
 Host: yougotagift.com
 Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
 
@@ -368,7 +368,7 @@ Content-Type: application/json
 #### Request
 
 ```
-POST /merchant/api/redeem/ HTTP/1.1
+POST /api/redeem/ HTTP/1.1
 Host: yougotagift.com
 Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
 
@@ -486,145 +486,12 @@ Content-Type: application/json
 }
 ```
 
-
-### Cancel Redemption
-
-#### Request
-
-```
-POST /merchant/api/cancel/ HTTP/1.1
-Host: yougotagift.com
-Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
-
-code=5163171564575&redemption_code=46ECE933
-```
-
-#### Success Response
-
-```
-HTTP/1.0 200 OK 
-Content-Type: application/json
-
-{
-  "code": "5163171564575",
-  "brand": "Brand",
-  "date_purchased": "09/11/2012",
-  "expiry_date": "09/11/2013",
-  "amount": 500,
-  "amount_in_usd": 136.13,
-  "ok": true,
-  "redemption_code": "46ECE933"
-}
-```
-
-
-#### Fail Response (Not Redeemed)
-
-```
-HTTP/1.0 400 BAD REQUEST 
-Content-Type: application/json
-
-{
-  "errors": [
-    {
-      "field": "code",
-      "errors": [
-        "Gift card is not redeemed"
-      ]
-    }
-  ]
-}
-```
-
-
-#### Fail Response (Redeemed more than 14 days ago)
-
-```
-HTTP/1.0 400 BAD REQUEST 
-Content-Type: application/json
-
-{
-  "errors": [
-    {
-      "field": "code",
-      "errors": [
-        "Gift card was redeemed more than 14 days ago"
-      ]
-    }
-  ]
-}
-```
-
-
-#### Fail Response (Invalid Gift Card Code)
-
-```
-HTTP/1.0 400 BAD REQUEST 
-Content-Type: application/json
-
-{
-  "errors": [
-    {
-      "field": "code",
-      "errors": [
-        "Invalid code, please try again."
-      ]
-    }
-  ]
-}
-```
-
-
-#### Fail Response (Invalid Redemption Code)
-
-```
-HTTP/1.0 400 BAD REQUEST 
-Content-Type: application/json
-
-{
-  "errors": [
-    {
-      "field": "redemption_code",
-      "errors": [
-        "Invalid redemption code, please try again."
-      ]
-    }
-  ]
-}
-```
-
-
-#### Fail Response (Missing Fields)
-
-```
-HTTP/1.0 400 BAD REQUEST 
-Content-Type: application/json
-
-{
-  "errors": [
-    {
-      "field": "code",
-      "errors": [
-        "This field is required."
-      ]
-    },
-    {
-      "field": "redemption_code",
-      "errors": [
-        "This field is required."
-      ]
-    }
-  ]
-} 
-```
-
-
 ### Get Redeemed Gift Cards
 
 #### Request
 
 ```
-GET /merchant/api/redeemed/ HTTP/1.1
+GET /api/redeemed/ HTTP/1.1
 Host: yougotagift.com
 Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
 ```
