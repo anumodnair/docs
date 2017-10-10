@@ -23,7 +23,7 @@ v2.1 supports brands which has big list of locations and includes PIN redemption
 
 #### Summary of changes
 
-- `order` : Retruns a key `pin_redeemable` which denotes, if the brand of the gift supports PIN redemption process
+- `pin_redeemable` : Includes key `pin_redeemable` in `order` , `brands` , `orders` which denotes, if the brand of the gift supports PIN redemption process
 - `Brand Locations` : The response has been tweaked to support brands which has a big list of locations
 - `Redeem` : Supports Pin Redemption process
 
@@ -262,6 +262,7 @@ Returns the full gift details in the response
                 "logo": "https://xxxxxxxxxxxxx/images/cards/fb/1847-FB-196x196.jpg",
                 "product_image": "https://xxxxxxxxxxxx/images/cards/print/1847-print.png",
                 "code": "184726",
+                "pin_redeemable": true,
                 "name": "1847"
             },
             "country": "AE"
@@ -280,6 +281,7 @@ Returns the full gift details in the response
 | extra_fields | string | Returns the extra parameter passed to the request which is sent by the client |
 | brand_accepted_amount | array | Amount in currency accepted by the brand, the brand accepts the gift card only in this particular currency. |
 | barcode | string | Returns Barcode link for the applicable gift otherwise returns null |
+| pin_redeemable | Boolean | Denotes if the brand supports PIN redemption |
 | pdf_link | string | Gift PDF link |
 | gift_voucher | array | Contains the gift code, Pin or url. This varies from brand to brand |
 | expiry_date | date | Expiry date of the gift |
@@ -398,6 +400,7 @@ Order Failed
                         "product_image": "https://xxxxxxxxxxxx/media/images/cards/print/1847-print.png",
                         "code": "184726",
                         "name": "1847"
+                        "pin_redeemable": false,
                     },
                     "country": "AE"
                 }
@@ -427,7 +430,7 @@ Trace/retrieve your order using `/orders/<reference_id>/` by passing the `refere
                 "amount": 1000
             },
             "extra_fields": "",
-            "brand_code": "184726",
+            "brand_code": "ITUNEUS273",
             "receiver_name": "xxxxx",
             "receiver_email": "xxxx@xxxxx.com",
             "receiver_phone": "+9715xxxxxx"
@@ -462,6 +465,7 @@ Trace/retrieve your order using `/orders/<reference_id>/` by passing the `refere
                 "logo": "https://xxxxxxxx/images/cards/fb/1847-FB-196x196.jpg",
                 "product_image": "https://xxxxxxxxxxxx/media/images/cards/print/1847-print.png",
                 "code": "184726",
+                "pin_redeemable": true,
                 "name": "1847"
             },
             "country": "AE"
@@ -512,6 +516,7 @@ Returns the brand details of all of the countries
 | id | int | Unique ID of the brand |
 | is_active | boolean | Denotes the status of the brand. if false, denotes brand is currently unavailable |
 | brand_code | string | Unique Code of the brand |
+| pin_redeemable | Boolean | Denotes if the brand supports PIN redemption |
 | name | string | Brand Name |
 | logo | string | Brand logo image |
 | product_image | string | Product image of the brand |
@@ -543,6 +548,7 @@ Returns the brand details of all of the countries
                             "id": 26,
                             "is_active": true,
                             "brand_code": "184726",
+                            "pin_redeemable": true,
                             "name": "1847",
                             "logo": "https://xxxxxxx/1847-FB-196x196.jpg",
                             "product_image": "https://xxxxxxx/1847-372x238.jpg",
@@ -618,6 +624,7 @@ Returns the brand details of all of the countries
                             "id": 117,
                             "is_active": true,
                             "brand_code": "ABC117",
+                            "pin_redeemable": true,
                             "name": "ABC",
                             "logo": "https://xxxxxxx/ABC-FB-300x300.png",
                             "product_image": "https://xxxxxxx/ABC-372x238.jpg",
@@ -675,7 +682,7 @@ List the brands by page
 `/brands/?page=2`
 
 ### `Brand Cities`
-Returns the brand Cities details of a brand
+Returns the Cities where the brand stores are located
 
 - **Endpoint** `/brands/<brand_code>/locations/`
 - **Returns** JSON Object with the result of your request
@@ -734,7 +741,7 @@ Brand location details are available under `city_locations_url`
         }
 
 ### `Brand Locations in a City`
-Returns the brand location details in the city of a brand
+Returns the brand location details of a brand in a city
 
 - **Endpoint** `/brands/<brand_code>/locations/<cities_id>`
 - **Returns** JSON Object with the result of your request
