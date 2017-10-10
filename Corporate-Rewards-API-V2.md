@@ -1,10 +1,14 @@
-# YouGotaGift.com eGift API _v2.1_
+# YouGotaGift.com eGift API _v2.0_
 
 ![YouGotaGift.com Logo](https://cdn.yougotagift.com/static/img/yougotagift.png)
 
-### Older API Version Links
-[Version 2.0](https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API-V2.md)
 
+### API Latest Version Link
+
+[Latest Version](https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API.md)
+
+
+### Older API Version Links
 [Version 1.0](https://github.com/YouGotaGift/docs/blob/master/corporate-rewards-API-v1.0.md)
 
 [Version 0.4](https://github.com/YouGotaGift/docs/blob/master/corporate-rewards-API-v0.4.md)
@@ -19,13 +23,15 @@ YouGotaGift.com’s API allows you to deliver gift by email/SMS or receive gift 
 
 #### Changes
 
-v2.1 supports brands which has considerable size of locations and includes PIN redemption feature with which clients can enable YouGotaGift Gift Card redemption process on their Application.
+v2.0 is a major release which includes whole new set of API endpoints and all response parameters are different from the previous version.
 
 #### Summary of changes
 
-- `pin_redeemable` : Includes key `pin_redeemable` in `order` , `brands` , `orders` which denotes, if the brand of the gift supports PIN redemption process
-- `Brand Locations` : The response has been tweaked to support brands which has considerable size of locations
-- `Redeem` : Supports Pin Redemption process
+- `account`: returns the account information, which includes the current account balance
+- `brands` : brand catalogue with structured information
+- `order`  : single API to order gift cards for all delivery types
+- `orders` : returns the order history along with the gift details
+- `topup`  : allows to topup/replenish the account balance, currently available only on test account
 
 #### Credentials
 
@@ -262,7 +268,6 @@ Returns the full gift details in the response
                 "logo": "https://xxxxxxxxxxxxx/images/cards/fb/1847-FB-196x196.jpg",
                 "product_image": "https://xxxxxxxxxxxx/images/cards/print/1847-print.png",
                 "code": "184726",
-                "pin_redeemable": true,
                 "name": "1847"
             },
             "country": "AE"
@@ -281,7 +286,6 @@ Returns the full gift details in the response
 | extra_fields | string | Returns the extra parameter passed to the request which is sent by the client |
 | brand_accepted_amount | array | Amount in currency accepted by the brand, the brand accepts the gift card only in this particular currency. |
 | barcode | string | Returns Barcode link for the applicable gift otherwise returns null |
-| pin_redeemable | Boolean | Denotes if the brand supports PIN redemption |
 | pdf_link | string | Gift PDF link |
 | gift_voucher | array | Contains the gift code, Pin or url. This varies from brand to brand |
 | expiry_date | date | Expiry date of the gift |
@@ -359,8 +363,7 @@ Order Failed
             "next": "https://xxxxxxxxxxxxx/orders/?page=2",
             "previous": null,
             "orders": [
-                {   
-                    "gift_token": "fXDIegleTzFSkBBuXaI83yx9qqt05hU0E",
+                {
                     "reference_id": "65377",
                     "order_id": 5718,
                     "state": 1,
@@ -376,7 +379,6 @@ Order Failed
                     "extra_fields": ""
                 },
                 {
-                    "gift_token": "erDIegleTzFSkBeuXaI83yx9qqt05hUws",
                     "reference_id": "12331",
                     "order_id": 5737,
                     "state": 1,
@@ -402,7 +404,6 @@ Order Failed
                         "product_image": "https://xxxxxxxxxxxx/media/images/cards/print/1847-print.png",
                         "code": "184726",
                         "name": "1847"
-                        "pin_redeemable": false,
                     },
                     "country": "AE"
                 }
@@ -432,7 +433,7 @@ Trace/retrieve your order using `/orders/<reference_id>/` by passing the `refere
                 "amount": 1000
             },
             "extra_fields": "",
-            "brand_code": "ITUNEUS273",
+            "brand_code": "184726",
             "receiver_name": "xxxxx",
             "receiver_email": "xxxx@xxxxx.com",
             "receiver_phone": "+9715xxxxxx"
@@ -467,7 +468,6 @@ Trace/retrieve your order using `/orders/<reference_id>/` by passing the `refere
                 "logo": "https://xxxxxxxx/images/cards/fb/1847-FB-196x196.jpg",
                 "product_image": "https://xxxxxxxxxxxx/media/images/cards/print/1847-print.png",
                 "code": "184726",
-                "pin_redeemable": true,
                 "name": "1847"
             },
             "country": "AE"
@@ -518,7 +518,6 @@ Returns the brand details of all of the countries
 | id | int | Unique ID of the brand |
 | is_active | boolean | Denotes the status of the brand. if false, denotes brand is currently unavailable |
 | brand_code | string | Unique Code of the brand |
-| pin_redeemable | Boolean | Denotes if the brand supports PIN redemption |
 | name | string | Brand Name |
 | logo | string | Brand logo image |
 | product_image | string | Product image of the brand |
@@ -533,7 +532,7 @@ Returns the brand details of all of the countries
 | redemption_type | string | Denotes the end redemption process of the brand, Available options `redeem_online` : Gift card can only be redeemed online eg: Amazon, Itunes etc.., `redeem_at_store` : Gift card can only be redeemed at the physical store. , `self_redemption`: Gift card has to redeemed by the receiver by following the instructions mentioned in the gift. eg: Mobile Topup Cards, `direct_redemption`: Gift Card gets redeemed automatically. No manual action required from receiver’s end. eg: Direct mobile topup |
 | redemption_instructions | string | The redemption instruction of the gift card |
 | detail_url | string | Unique API endpoint of the brand which will return the current brand details |
-| locations_url | string | API endpoint which returns the list of all current brand and cities available |
+| locations | string | API endpoint which returns the list of all current brand locations |
 
 #### Response
 
@@ -550,7 +549,6 @@ Returns the brand details of all of the countries
                             "id": 26,
                             "is_active": true,
                             "brand_code": "184726",
-                            "pin_redeemable": true,
                             "name": "1847",
                             "logo": "https://xxxxxxx/1847-FB-196x196.jpg",
                             "product_image": "https://xxxxxxx/1847-372x238.jpg",
@@ -620,13 +618,12 @@ Returns the brand details of all of the countries
                             "redemption_type": "Redeem at Store",
                             "redemption_instructions": "This eGift Card is redeemable for any service offered in any 1847 branch across the UAE.\r\nThis eGift Card is only valid for a one time purchase to the full value unless otherwise specified.",
                             "detail_url": "https://xxxxxxx/184726/",
-                            "locations_url": "https://xxxxxxx/locations/"
+                            "locations": "https://xxxxxxx/locations/"
                         },
                         {
                             "id": 117,
                             "is_active": true,
                             "brand_code": "ABC117",
-                            "pin_redeemable": true,
                             "name": "ABC",
                             "logo": "https://xxxxxxx/ABC-FB-300x300.png",
                             "product_image": "https://xxxxxxx/ABC-372x238.jpg",
@@ -661,7 +658,7 @@ Returns the brand details of all of the countries
                             "redemption_type": "Redeem at Store",
                             "redemption_instruction": "This eGift Card is redeemable for any merchandise offered in ABC outlets across Lebanon.\r\nThis eGift Card is only valid for a one time purchase to the full value unless otherwise specified\r\n",
                             "detail_url": "https://xxxxxxx/brands/ABC117/",
-                            "locations_url": "https://xxxxxxx/brands/ABC117/locations/"
+                            "locations": "https://xxxxxxx/brands/ABC117/locations/"
                         }
                 ]
         }
@@ -683,8 +680,8 @@ List all active brands
 List the brands by page
 `/brands/?page=2`
 
-### `Brand Cities`
-Returns the Cities where the brand stores are located
+### `Brand Locations`
+Returns the brand location details of a brand
 
 - **Endpoint** `/brands/<brand_code>/locations/`
 - **Returns** JSON Object with the result of your request
@@ -693,104 +690,53 @@ Returns the Cities where the brand stores are located
 - **Rate Limited**
 
 #### Response
-Brand location details are available under `city_locations_url`
-
-        HTTP 200 OK
-        Content-Type: application/json
-        Vary: Accept
-        Allow: GET, HEAD
+Brand location details are available under `store_locations`
 
         {
-        "total_count": 6,
-        "total_page": 1,
-        "current_page": 1,
-        "current_page_count": 6,
-        "next": null,
-        "previous": null,
-        "brand_name": "Nike",
-        "cities": [
+            "brand_name": "ACE",
+            "store_locations": [
                 {
-                    "id": "1",
-                    "name": "Dubai",
-                    "city_locations_url": "https://xxxxxxx/brands/NIKE/locations/1"
+                    "city": "Dubai",
+                    "locations": [
+                        {
+                            "phone": "04 232 5232",
+                            "name": "Dubai Festival City"
+                        },
+                        {
+                            "phone": "04 341 1906",
+                            "name": "Sheikh Zayed Road"
+                        }
+                    ]
                 },
                 {
-                    "id": "2",
-                    "name": "Abu Dhabi",
-                    "city_locations_url": "https://xxxxxxx/brands/NIKE/locations/2"
+                    "city": "Abu Dhabi",
+                    "locations": [
+                        {
+                            "phone": "02 673 1665",
+                            "name": "Mina Road"
+                        },
+                        {
+                            "phone": "02 565 1945",
+                            "name": "Yas Island"
+                        },
+                        {
+                            "phone": "02 551 2744",
+                            "name": "Dalma Mall"
+                        }
+                    ]
                 },
                 {
-                    "id": "3",
-                    "name": "Ajman",
-                    "city_locations_url": "https://xxxxxxx/brands/NIKE/locations/3"
-                },
-                {
-                    "id": "4",
-                    "name": "Fujairah",
-                    "city_locations_url": "https://xxxxxxx/brands/NIKE/locations/4"
-                },
-                {
-                    "id": "6",
-                    "name": "Sharjah",
-                    "city_locations_url": "https://xxxxxxx/brands/NIKE/locations/6"
-                },
-                {
-                    "id": "8",
-                    "name": "Ras Al Khaimah",
-                    "city_locations_url": "https://xxxxxxx/brands/NIKE/locations/8"
-                }
-        ]
-        }
-
-### `Brand Locations in a City`
-Returns the brand location details of a brand in a city
-
-- **Endpoint** `/brands/<brand_code>/locations/<cities_id>`
-- **Returns** JSON Object with the result of your request
-- **Accepts** `GET` only.
-- **Requires Authentication**
-- **Rate Limited**
-
-#### Response
-Brand location details are available under `locations`
-
-        HTTP 200 OK
-        Content-Type: application/json
-        Vary: Accept
-        Allow: GET, HEAD
-
-        {
-            "total_count": 5,
-            "total_page": 1,
-            "current_page": 1,
-            "current_page_count": 5,
-            "next": null,
-            "previous": null,
-            "brand_name": "1847",
-            "locations": [
-                {
-                    "name": "Emirates Towers Boulevard",
-                    "phone": null
-                },
-                {
-                    "name": "Grosvenor House Hotel",
-                    "phone": "04 399 8989"
-                },
-                {
-                    "name": "JBR The Walk",
-                    "phone": "04 422 1847"
-                },
-                {
-                    "name": "Mirdif City Centre",
-                    "phone": "04 236 2020"
-                },
-                {
-                    "name": "City Walk",
-                    "phone": "04 344 3363"
+                    "city": "Al Ain",
+                    "locations": [
+                        {
+                            "phone": "03 784 0561",
+                            "name": "Bawadi Mall"
+                        }
+                    ]
                 }
             ]
         }
-        
+
 #### Response
 A few brands will have `retailers` list where the brand gift card can be redeemed
 
@@ -1150,124 +1096,12 @@ Generates a new Credentials
                 "code": 2010
             }
         }
-        
-### `Redeem`
-PIN redemption process can be incorporated using the `Redeem` 
-- **Endpoint** `/gift/redeem/`
-- **Returns** JSON Object with the result of your request
-- **Accepts** `POST` only.
-- **Requires Authentication**
-
-#### Request Parameters
-| Parameter    | Type | Description   |
-| ------------ | ---- | ------------- |
-| redemption_pin | string | **Required** Retailer PIN |
-| redemption_reference_id | string | **Required** Client reference id |
-| gift_token | string | **Required**  Gift token 
-| order_id | string | **Required**  Order id |
-
-#### Request
-
-    POST /gift/redeem/
-
-    {
-        "redemption_pin": "1234",
-        "redemption_reference_id": "abcxyzk",
-        "gift_token": "fXDIeaRwXPHh5UVJp3PW1SdSEtrwGcMwB",
-        "order_id": "405541"
-    }
-
-
-#### Response     
-    HTTP 200 OK
-    Content-Type: application/json
-    Vary: Accept
-    Allow: POST
-
-    {
-        "utilized_date": "2017-09-20T13:45:21Z",
-        "redemption_reference_id": "abcxyzk",
-        "brand_code": 'VRGN',
-        "redemption_id": "YT-1-64211",
-        "state": 1
-    }
-        
-| Parameter    | Type | Description   |
-| ------------ | ---- | ------------- |
-| state | int | `0` : Failed, `1` : succeeded |
-| utilized_date | date | Utilized date in UTC  |
-| redemption_id | string | Unique Redemption ID generated by YGAG API |
-| redemption_reference_id | string | Unique redemption reference id generated by Client |
-| brand_code | string | brand code |
-
-#### How to retrieve redeemed gift/order using client redemption_reference_id
-
-
-#### Request
-
-    GET /orders/?redemption_reference_id=abcxyzk
-
-    HTTP 200 OK
-    Content-Type: application/json
-    Vary: Accept
-    Allow: GET, HEAD
-
-    {
-        "total_count": 1,
-        "total_page": 1,
-        "current_page": 1,
-        "current_page_count": 1,
-        "next": null,
-        "previous": null,
-        "orders": [
-            {
-                "gift_token": "fXDIeaRwXPHh5UVJp3PW1SdSEtrwGcMwB",
-                "reference_id": "",
-                "order_id": 405541,
-                "state": 1,
-                "utilized_details": {
-                    "redemption_reference_id": "abcxyzk",
-                    "redemption_id": "YT-1-64211",
-                    "utilized_date": "2017-09-20T13:45:21Z",
-                    "brand_code": "VRGN"
-                },
-                "gift_status": 3,
-                "delivery_type": 1,
-                "ordered_amount": {
-                    "currency": "AED",
-                    "amount": 10
-                },
-                "extra_fields": null,
-                "brand_accepted_amount": {
-                    "currency": "AED",
-                    "amount": 10
-                },
-                "barcode": "https://xxxxxx.com/gifts/barcode/generate/4827709516917/",
-                "pdf_link": "http://xxxxxx.com/uJuOG7E",
-                "gift_voucher": {
-                    "code": "4827709516917"
-                },
-                "expiry_date": "2018-09-20",
-                "redemption_instructions": "This eGift Card is redeemable for any merchandise offered in any Virgin Megastore across the UAE.\r\nThis eGift Card is only valid for a one time purchase to the full value unless otherwise specified.",
-                "brand_details": {
-                    "logo": "http://xxxxxx.com/media/images/cards/fb/virgin-megastore-uae-FB-300x300.png",
-                    "product_image": "http://xxxxxx.com/media/images/cards/print/virgin-megastore-uae-print.png",
-                    "code": "VRGN",
-                    "name": "Virgin Megastore"
-                },
-                "country": "AE"
-            }
-        ]
-    }
-
-In the above response, `utilized_details` key will provide the gift utilized details.
-
 
 ### Important Points to handle
 
 - `account` : Automatic balance check can be implemented by calling `account` API, it will help you in replenishing your account before it runs out of credit, thus helping you to having an uninterrupted service
 - `Rate Limit` : Save the data returned by the API in your application, for the API endpoints which has rate limit set. This is mandatory as YouGotaGift.com accepts only limited requests and this action will help in overcome this scenario.
-- `brands` : This API endpoint has a rate limit set and it is adviced to save the brands details in your application. We recommend to sync it once in a fortnight as new brand addition doesn't happen frequently.
+- `brands` : This API endpoint has a rate limit set and it is adviced to save the brands details in your application. We recommend to sync it once in a fortnight as new brand addition doesn't happen freqeuntly.
 - `orders` : `brand_accepted_amount` is an important key returned in `orders` API call. Always present the Gift with the currency and amount returned in this key. If the Gift is presented in any other currency to the retailer, then retailer will reject the gift from redeeming.
 - `gift_voucher` key in `order` API Call :  All of the key values returned in `gift_voucher` key need to be shared with end user. This has mandatory elements required to redeem a gift.
 - `orders` : Makes sure you pass a `reference_id` for each and every order, which uniquely identifies the request initiated from your end. This helps in reconcilation and also prevents duplicate order getting processed.
