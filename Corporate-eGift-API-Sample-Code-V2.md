@@ -1,4 +1,4 @@
-## YouGotaGift.com eGift API _v2.0_ ( Authentication and Sample code )
+## YouGotaGift.com eGift API _v2.*_  ( Authentication and Sample code )
 
 ![YouGotaGift.com Logo](https://cdn.yougotagift.com/static/img/yougotagift.png)
 
