@@ -19,12 +19,12 @@ YouGotaGift.com’s API allows you to deliver gift by email/SMS or receive gift 
 
 #### Changes
 
-v2.1 supports brands which has big list of locations and includes PIN redemption feature with which clients can enable YouGotaGift Gift Card redemption process on their Application.
+v2.1 supports brands which has considerable size of locations and includes PIN redemption feature with which clients can enable YouGotaGift Gift Card redemption process on their Application.
 
 #### Summary of changes
 
 - `pin_redeemable` : Includes key `pin_redeemable` in `order` , `brands` , `orders` which denotes, if the brand of the gift supports PIN redemption process
-- `Brand Locations` : The response has been tweaked to support brands which has a big list of locations
+- `Brand Locations` : The response has been tweaked to support brands which has considerable size of locations
 - `Redeem` : Supports Pin Redemption process
 
 #### Credentials
