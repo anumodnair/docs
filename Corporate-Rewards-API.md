@@ -528,7 +528,7 @@ Returns the brand details of all of the countries
 | redemption_type | string | Denotes the end redemption process of the brand, Available options `redeem_online` : Gift card can only be redeemed online eg: Amazon, Itunes etc.., `redeem_at_store` : Gift card can only be redeemed at the physical store. , `self_redemption`: Gift card has to redeemed by the receiver by following the instructions mentioned in the gift. eg: Mobile Topup Cards, `direct_redemption`: Gift Card gets redeemed automatically. No manual action required from receiver’s end. eg: Direct mobile topup |
 | redemption_instructions | string | The redemption instruction of the gift card |
 | detail_url | string | Unique API endpoint of the brand which will return the current brand details |
-| locations | string | API endpoint which returns the list of all current brand locations |
+| locations_url | string | API endpoint which returns the list of all current brand and cities available |
 
 #### Response
 
@@ -614,7 +614,7 @@ Returns the brand details of all of the countries
                             "redemption_type": "Redeem at Store",
                             "redemption_instructions": "This eGift Card is redeemable for any service offered in any 1847 branch across the UAE.\r\nThis eGift Card is only valid for a one time purchase to the full value unless otherwise specified.",
                             "detail_url": "https://xxxxxxx/184726/",
-                            "locations": "https://xxxxxxx/locations/"
+                            "locations_url": "https://xxxxxxx/locations/"
                         },
                         {
                             "id": 117,
@@ -654,7 +654,7 @@ Returns the brand details of all of the countries
                             "redemption_type": "Redeem at Store",
                             "redemption_instruction": "This eGift Card is redeemable for any merchandise offered in ABC outlets across Lebanon.\r\nThis eGift Card is only valid for a one time purchase to the full value unless otherwise specified\r\n",
                             "detail_url": "https://xxxxxxx/brands/ABC117/",
-                            "locations": "https://xxxxxxx/brands/ABC117/locations/"
+                            "locations_url": "https://xxxxxxx/brands/ABC117/locations/"
                         }
                 ]
         }
@@ -676,8 +676,8 @@ List all active brands
 List the brands by page
 `/brands/?page=2`
 
-### `Brand Locations`
-Returns the brand location details of a brand
+### `Brand Cities`
+Returns the brand Cities details of a brand
 
 - **Endpoint** `/brands/<brand_code>/locations/`
 - **Returns** JSON Object with the result of your request
@@ -686,53 +686,104 @@ Returns the brand location details of a brand
 - **Rate Limited**
 
 #### Response
-Brand location details are available under `store_locations`
+Brand location details are available under `city_locations_url`
+
+        HTTP 200 OK
+        Content-Type: application/json
+        Vary: Accept
+        Allow: GET, HEAD
 
         {
-            "brand_name": "ACE",
-            "store_locations": [
+        "total_count": 6,
+        "total_page": 1,
+        "current_page": 1,
+        "current_page_count": 6,
+        "next": null,
+        "previous": null,
+        "brand_name": "Nike",
+        "cities": [
                 {
-                    "city": "Dubai",
-                    "locations": [
-                        {
-                            "phone": "04 232 5232",
-                            "name": "Dubai Festival City"
-                        },
-                        {
-                            "phone": "04 341 1906",
-                            "name": "Sheikh Zayed Road"
-                        }
-                    ]
+                    "id": "1",
+                    "name": "Dubai",
+                    "city_locations_url": "https://xxxxxxx/brands/NIKE/locations/1"
                 },
                 {
-                    "city": "Abu Dhabi",
-                    "locations": [
-                        {
-                            "phone": "02 673 1665",
-                            "name": "Mina Road"
-                        },
-                        {
-                            "phone": "02 565 1945",
-                            "name": "Yas Island"
-                        },
-                        {
-                            "phone": "02 551 2744",
-                            "name": "Dalma Mall"
-                        }
-                    ]
+                    "id": "2",
+                    "name": "Abu Dhabi",
+                    "city_locations_url": "https://xxxxxxx/brands/NIKE/locations/2"
                 },
                 {
-                    "city": "Al Ain",
-                    "locations": [
-                        {
-                            "phone": "03 784 0561",
-                            "name": "Bawadi Mall"
-                        }
-                    ]
+                    "id": "3",
+                    "name": "Ajman",
+                    "city_locations_url": "https://xxxxxxx/brands/NIKE/locations/3"
+                },
+                {
+                    "id": "4",
+                    "name": "Fujairah",
+                    "city_locations_url": "https://xxxxxxx/brands/NIKE/locations/4"
+                },
+                {
+                    "id": "6",
+                    "name": "Sharjah",
+                    "city_locations_url": "https://xxxxxxx/brands/NIKE/locations/6"
+                },
+                {
+                    "id": "8",
+                    "name": "Ras Al Khaimah",
+                    "city_locations_url": "https://xxxxxxx/brands/NIKE/locations/8"
+                }
+        ]
+        }
+
+### `Brand Locations in a City`
+Returns the brand location details in the city of a brand
+
+- **Endpoint** `/brands/<brand_code>/locations/<cities_id>`
+- **Returns** JSON Object with the result of your request
+- **Accepts** `GET` only.
+- **Requires Authentication**
+- **Rate Limited**
+
+#### Response
+Brand location details are available under `locations`
+
+        HTTP 200 OK
+        Content-Type: application/json
+        Vary: Accept
+        Allow: GET, HEAD
+
+        {
+            "total_count": 5,
+            "total_page": 1,
+            "current_page": 1,
+            "current_page_count": 5,
+            "next": null,
+            "previous": null,
+            "brand_name": "1847",
+            "locations": [
+                {
+                    "name": "Emirates Towers Boulevard",
+                    "phone": null
+                },
+                {
+                    "name": "Grosvenor House Hotel",
+                    "phone": "04 399 8989"
+                },
+                {
+                    "name": "JBR The Walk",
+                    "phone": "04 422 1847"
+                },
+                {
+                    "name": "Mirdif City Centre",
+                    "phone": "04 236 2020"
+                },
+                {
+                    "name": "City Walk",
+                    "phone": "04 344 3363"
                 }
             ]
         }
-
+        
 #### Response
 A few brands will have `retailers` list where the brand gift card can be redeemed
 
