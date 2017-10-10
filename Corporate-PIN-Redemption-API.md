@@ -5,7 +5,7 @@
 
 ### Introduction
 
-This documentation is part of YouGotaGift.com API v2.0. These API's can be used to redeem the eGift Card using retailer pin.
+This documentation is part of YouGotaGift.com API v2.1. These API's can be used to redeem the eGift Card using retailer pin.
 
 ### `Redeem`
 - **Endpoint** `/gift/redeem/`
