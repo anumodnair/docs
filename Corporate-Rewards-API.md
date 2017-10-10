@@ -1258,7 +1258,7 @@ In the above response, `utilized_details` key will provide the gift utilized det
 
 - `account` : Automatic balance check can be implemented by calling `account` API, it will help you in replenishing your account before it runs out of credit, thus helping you to having an uninterrupted service
 - `Rate Limit` : Save the data returned by the API in your application, for the API endpoints which has rate limit set. This is mandatory as YouGotaGift.com accepts only limited requests and this action will help in overcome this scenario.
-- `brands` : This API endpoint has a rate limit set and it is adviced to save the brands details in your application. We recommend to sync it once in a fortnight as new brand addition doesn't happen freqeuntly.
+- `brands` : This API endpoint has a rate limit set and it is adviced to save the brands details in your application. We recommend to sync it once in a fortnight as new brand addition doesn't happen frequently.
 - `orders` : `brand_accepted_amount` is an important key returned in `orders` API call. Always present the Gift with the currency and amount returned in this key. If the Gift is presented in any other currency to the retailer, then retailer will reject the gift from redeeming.
 - `gift_voucher` key in `order` API Call :  All of the key values returned in `gift_voucher` key need to be shared with end user. This has mandatory elements required to redeem a gift.
 - `orders` : Makes sure you pass a `reference_id` for each and every order, which uniquely identifies the request initiated from your end. This helps in reconcilation and also prevents duplicate order getting processed.
