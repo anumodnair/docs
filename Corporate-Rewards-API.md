@@ -3,6 +3,8 @@
 ![YouGotaGift.com Logo](https://cdn.yougotagift.com/static/img/yougotagift.png)
 
 ### Older API Version Links
+[Version 2.0](https://github.com/YouGotaGift/docs/blob/master/Corporate-Rewards-API-V2.md)
+
 [Version 1.0](https://github.com/YouGotaGift/docs/blob/master/corporate-rewards-API-v1.0.md)
 
 [Version 0.4](https://github.com/YouGotaGift/docs/blob/master/corporate-rewards-API-v0.4.md)
