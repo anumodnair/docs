@@ -1,4 +1,4 @@
-# YouGotaGift.com eGift API _v2.0_
+# YouGotaGift.com eGift API _v2.1_
 
 ![YouGotaGift.com Logo](https://cdn.yougotagift.com/static/img/yougotagift.png)
 
