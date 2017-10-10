@@ -125,62 +125,6 @@ An error is:
 </tr>
 </table>
 
-### Cancel Redemption
-
-<table>
-  <tr>
-    <td><strong>URL</strong></td>
-    <td>/api/cancel/</td>
-  </tr>
-  <tr>
-    <td><strong>HTTP Method</strong></td>
-    <td>POST</td>
-  </tr>
-  <tr>
-    <td valign="top"><strong>Parameters</strong></td>
-    <td>
-      <ul>
-        <li><code>code</code> [String 13 digits]</li>
-        <li><code>redemption_code</code> [String]</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td valign="top"><strong>Response</strong></td>
-    <td>
-      On success <code>HTTP 200</code> with:<br />
-      <br />
-      If gift card redemption was cancelled:<br />
-
-      The gift with the following structure:
-      <ul>
-        <li><code>code</code> [String 13 digits]
-        <li><code>brand</code> [String]
-        <li><code>date_redeemed</code> [String DD/MM/YYYY]
-        <li><code>staff</code> [String]
-        <li><code>store</code> [String]
-        <li><code>amount</code> [Integer]
-        <li><code>amount_in_usd</code> [Float]
-        <li><code>ok</code> [true]
-        <li><code>redemption_code</code> [String]
-      </ul>
-
-      On failure <code>HTTP 400</code> with:
-      <ul>
-        <li><code>errors</code> [Array of errors].
-      </ul>
-
-      An error is:
-      <ul>
-        <li><code>field</code> [String]
-        <li><code>errors</code> [Array of strings].
-      </ul>
-    </td>
-  </tr>
-</table>
-
-<em><strong>N.B.</strong> You can only cancel redemptions of gift cards redeemed less than 14 days ago.</em>
-
 
 ### Redeemed Gift Cards
 
@@ -226,14 +170,6 @@ When requested, YouGotaGift.com can give you sandbox access to the API, which is
   * If the code is of the form `9002xxxxxxxxx` you will receive the “Code is expired since DD MM, YYYY” error in an `HTTP 400` response.
   * If the code is of the form `9003xxxxxxxxx` you will receive the “Gift card already redeemed on DD MM, YYYY” error in an `HTTP 400` response.
   * Else you will get the `HTTP 200` response with a redeemed test gift card.
-* When calling Cancel Redemption with the sandbox account you will get a result depending on the code you send (You only have to send the code parameter):
-  * If the code is of the form `9001xxxxxxxxx` you will receive the “Invalid code, please try again.” error in an `HTTP 400` response.
-  * If the code is of the form `9002xxxxxxxxx` you will receive the “Invalid redemption code, please try again” error in an `HTTP 400` response.
-  * If the code is of the form `9003xxxxxxxxx` you will receive the “Gift card is not redeemed” error in an `HTTP 400` response.
-  * If the code is of the form `9004xxxxxxxxx` you will receive the “Gift card was redeemed more than 14 days ago” error in an `HTTP 400` response.
-  * Else you will get the `HTTP 200` response with a redeemed test gift card.
-
-When you send asking for a request call back, YouGotaGift.com will respond with an `HTTP 200` response with `{“ok” : “true”}` in its body, YouGotaGift.com will call your system API after at least 3 seconds delay.
 
 You must call these API access points using a Sandbox account ONLY, otherwise it will return an `HTTP 404` response.
 
