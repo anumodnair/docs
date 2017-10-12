@@ -23,9 +23,9 @@ v2.1 supports brands which has considerable size of locations and includes PIN r
 
 #### Summary of changes
 
-- `pin_redeemable` : Includes key `pin_redeemable` in `order` , `brands` , `orders` which denotes, if the brand of the gift supports PIN redemption process
-- `Brand Locations` : The response has been tweaked to support brands which has considerable size of locations
-- `Redeem` : Supports Pin Redemption process
+- `pin_redeemable` : Includes key `pin_redeemable` in `order` , `brands` , `orders` which denotes, if the brand supports PIN based redemption(Pin redemption is support only in mobile app, which has wallet functionality)
+- `Brand Locations` : The response has been tweaked to support brands which have extensive store location
+- `Redeem` : Supports PIN Redemption process
 
 #### Credentials
 
